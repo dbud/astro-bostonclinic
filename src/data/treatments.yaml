@@ -1,0 +1,167 @@
+- name: Dermal Fillers
+  description: "Dermal fillers are typically made up of hyaluronic acid. By injecting dermal fillers into the skin, you can restore volume loss. You can have dermal fillers in different parts of your face: around the eye, cheeks, mouth and jawline, as well as lip fillers administered directly into the lip tissue."
+  options:
+    - name: 1ml
+      price: 200
+    - name: Sculptra (per vial)
+      price: 415
+    - name: Tear trough treatment
+      price: 350
+    - name: Nose reshaping
+      price: 235
+    - name: Lip Filler
+      price: 235
+    - name: Cheek and chin enhancements (package deal)
+      price: 600
+
+- name: Muscle relaxing injections
+  description: Botulinum Toxin is sterile, safe and has been used for years to treat serious medical conditions. It also reduces and relaxes frown lines, forehead lines and laughter lines around the eyes. Since Botulinum Toxin is not permanent, possible side effects are temporary and localized to the area injected.
+  options:
+    - name: 1 area
+      price: 165
+    - name: 2 areas
+      price: 230
+    - name: 3 areas
+      price: 315
+    - name: Masseter reduction
+      price: 175
+    - name: Gummy smile reduction
+      price: 100
+    - name: Sweatox (Axillary hyperhidrosis)
+      price: 450
+    - name: Migraine treatment
+      price: 375
+    - name: Hyperhidrosis scalp
+      price: 450
+    - name: Non-surgical jaw reduction
+      price: 350
+    - name: "(All other non-defined areas are charged £1 per 1 unit used. Top-up within 14 days after treatment if required. Thereafter full charge applies.)"
+      price: null
+
+- name: Sclerotherapy
+  description: Sclerotherapy involves the use of tiny needle to flush a small amount of a medication into the thread veins to cause them to dissolve away. We will not be able to get rid of every thread vein but we will try to decrease the venous appearance of your legs with gradual lightning of the thread veins each session. You may feel a very slight pricking sensation as the injections are being performed.
+  options:
+    - name: First treatment (inc. compression tights)
+      price: 300
+    - name: Follow on treatment
+      price: 250
+    - name: Facial Veins (per injection)
+      price: 150
+
+- name: Mesotherapy
+  description: Mesotherapy appears to be a safe and effective means of reducing cellulite, with positive effects of mood improvement, increased energy, overall healthy feeling and healthy skin, nails and hair. The medicine is injected into the cellulite or fatty tissue to improve circulation of lymphatic and venous drainage by increasing metabolism of the injected area.
+  options:
+    - name: Mesolift face
+      price: 150
+    - name: Meso neck
+      price: 150
+    - name: Meso decollete
+      price: 150
+    - name: Meso hands
+      price: 150
+    - name: Hair care (Hair restoration & support)
+      price: 80
+    - name: Mesotherapy for cellulite (single treatment)
+      price: 100
+    - name: Skin boosters (polynucletides)
+      price: 200
+
+- name: Lipolysis for fat reduction
+  description: Lipolysis is non-surgical procedure which breaks fat cells apart and reduces the volume of fat cells. It’s usually used for the smaller area of the body or face.
+  options:
+    - name: First treatment
+      price: 250
+    - name: Follow on treatment
+      price: 200
+
+- name: Vitamin injections
+  description: Vitamin injections are used to treat a deficiency of some essential nutrients.
+  options:
+    - name: B1, B6, B12, B Complex
+      price: 45
+    - name: Course of 5
+      price: 180
+
+- name: Micro-needling Dermal Roller
+  description: Micro-needling dermal roller SR is a hand held medical device which uses micro-needles to part the pores on the top layer of the skin without damaging them. It helps combat the appearance of scars, wrinkles, uneven skin tone, stretch marks, cellulite and even hair loss.
+  options:
+    - name: Face
+      price: 145
+    - name: Face & neck
+      price: 185
+    - name: Face & neck & decollete
+      price: 225
+    - name: "Special package — buy 4 get 1 free. Course and prices available on consultation"
+      price: null
+
+- name: The Perfect Peel
+  description: The Perfect Peel is a medical grade chemical peel that will transform your skin into looking younger, healthier and clearer in just one week. The process takes less than 15 minutes and is virtually pain free. The Perfect Peel blends a key anti-aging ingredient glutathione, kojic acid, TCA, retinoic acid, salicylic acid, phenol, and a blend of minerals and vitamins, including vitamin C. Alone the ingredients are powerful, but in combination they produce results that are astonishing.
+  options:
+    - name: Single treatment
+      price: 350
+
+- name: Skin Tags Removal
+  options:
+    - name: Up to 5
+      price: 150
+    - name: From 5 to 10
+      price: 200
+    - name: 10 to 15
+      price: 250
+
+- name: Non-surgical Face Lift (PDO threads)
+  description: Non-surgical face lift using advanced techniques to lift and tighten the skin without surgery.
+  options:
+    - name: Full face and neck
+      price: 1050
+    - name: Full face
+      price: 750
+    - name: Neck to jawline
+      price: 650
+    - name: Brow
+      price: 350
+    - name: Silhouette Soft Long-lasting threads (price per thread)
+      price: 300
+
+- name: Acne Injections
+  description: Injections to treat acne and reduce inflammation.
+  options:
+    - name: Full face
+      price: 200
+    - name: Small area
+      price: 150
+    - name: Chest
+      price: 200
+
+- name: PLEXR (Non-surgical blepharoplasty)
+  description: PLEXR is non surgical blepharoplasty made possible by advanced plasma technology. PLEXR is a pioneer in the plasma skin epidermal tightening and treating imperfections with over 6 years of experience in the industry.
+  options:
+    - name: Upper or lower eye (per treatment)
+      price: 350
+    - name: Upper and lower eyes
+      price: 650
+    - name: Upper or lower eye — 3 courses
+      price: 800
+    - name: Pigmentation (per treatment)
+      price: 150
+    - name: Neck
+      price: 600
+    - name: Eyebrow elevation
+      price: 200
+    - name: Scar revision
+      price: 200
+    - name: Acne
+      price: 150
+    - name: Skin tags
+      price: 140
+    - name: Smokers line
+      price: 250
+    - name: Sides (ear section)
+      price: 200
+
+- name: Butt-Lift
+  options:
+    - name: Sculptra (price per one vial)
+      price: 450
+    - name: "3 to 4 treatments needed, 6 weeks apart"
+      price: null

@@ -1,0 +1,82 @@
+---
+import logo from "../assets/logo.svg";
+import business from "../data/business.yaml";
+import Phone from "../components/Phone.astro";
+const { name, phones } = business;
+
+const navLinks = [
+    ["Welcome", "/"],
+    ["Treatments", "/treatments/"],
+    ["Book", "/book/"],
+];
+const ariaCurrent = (path: string) =>
+    Astro.url.pathname === path ? "page" : undefined;
+---
+
+<div class="relative">
+    <div
+        class="absolute inset-0 z-[-1] bg-gradient-to-r from-transparent via-transparent to-sky-600/20 top-10"
+        style="clip-path: url(#wave-clip)"
+    >
+    </div>
+    <div class="bg-white text-slate-800" style="clip-path: url(#wave-clip)">
+        <div
+            class="flex flex-wrap items-center justify-between p-8 pb-16 max-w-7xl mx-auto gap-8"
+        >
+            <a
+                href="/"
+                class="flex items-center flex-none gap-4 drop-shadow-indigo-800/60 --drop-shadow-[0px_1px_1px]
+                min-w-0 max-w-full shrink sm:shrink-0"
+            >
+                <img src={logo.src} alt={name} class="h-16" />
+                <h1 class="text-3xl sm:text-5xl">
+                    {name}
+                </h1>
+            </a>
+
+            <div class="flex flex-wrap items-center justify-between gap-8">
+                <nav>
+                    <ul class="flex font-sans gap-x-2">
+                        {
+                            navLinks.map(([label, href]) => (
+                                <li class={"mx-4"}>
+                                    <a
+                                        href={href}
+                                        aria-current={ariaCurrent(href)}
+                                        class="relative group"
+                                    >
+                                        <span
+                                            class="block absolute -inset-x-5 -inset-y-2 border-b-0 border-b-indigo-800 group-aria-[current]:bg-indigo-800 rounded-4xl drop-shadow-lg -skew-y-3"
+                                            aria-hidden="true"
+                                        />
+                                        <span class="relative underline underline-offset-3 text-black group-aria-[current]:text-white group-aria-[current]:no-underline">
+                                            {label}
+                                        </span>
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </nav>
+
+                <div class="flex flex-col font-sans min-h-12 justify-center">
+                    {phones.map((number) => <Phone number={number} />)}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <svg
+        class="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+    >
+        <defs>
+            <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
+                <path
+                    d="M0,0 H1 V0.85 C0.75,1 0.75,0.7 0.5,0.85 C0.25,1 0.25,0.7 0,0.85 Z"
+                ></path>
+            </clipPath>
+        </defs>
+    </svg>
+</div>
