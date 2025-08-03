@@ -1,31 +1,46 @@
 ---
+import photo from "../assets/malti.jpg";
 const { compact = true } = Astro.props;
 ---
 
-<div class="p-12 max-w-3xl">
+<div class="p-12 max-w-7xl">
     <h1 class="text-4xl">Sister Malti O’Mahony BSc.</h1>
     <p class="my-4 font-sans">
         Clinical&nbsp;Director&nbsp;/ Lead&nbsp;Trainer&nbsp;/
         Boston&nbsp;International&nbsp;Training&nbsp;Academy&nbsp;Ltd&nbsp;/
         Harley&nbsp;Street&nbsp;Treatments&nbsp;Ltd
     </p>
-    <p class="my-8 italic text-xl mx-auto max-w-md relative">
-        <span
-            class="block absolute -inset-x-4 -inset-y-5 -skew-y-2 bg-white drop-shadow-xl rounded-lg"
-            aria-hidden="true"></span>
-        <span class="relative">
-            — ‘It should always be more than just about giving treatments—it’s
-            about assessing each individual client, giving them honest advice,
-            support, results and personal care.’
-        </span>
-    </p>
-    <p class="font-sans">
+
+    <div
+        class="flex flex-col md:flex-row items-center flex-wrap justify-center md:justify-start gap-12 my-8"
+    >
+        <div class="w-48 h-48 overflow-hidden rounded-full shrink-0">
+            <img
+                src={photo.src}
+                alt="Malti O'Mahony"
+                class="w-full h-full object-cover"
+            />
+        </div>
+
+        <div class="italic text-xl relative w-full max-w-md md:w-auto">
+            <span
+                class="block absolute -inset-x-4 -inset-y-5 -skew-y-2 bg-white drop-shadow-xl rounded-lg"
+                aria-hidden="true"></span>
+            <span class="relative block">
+                — ‘It should always be more than just about giving
+                treatments—it’s about assessing each individual client, giving
+                them honest advice, support, results and personal care.’
+            </span>
+        </div>
+    </div>
+
+    <p class="font-sans max-w-3xl">
         Sister Malti O’Mahony has over 20 years of Aesthetic experience and
         expertise—and highly regarded within the Aesthetic Industry as being one
         of the most established practitioners in England and Europe.
     </p>
 
-    <details class="font-sans my-4" open={!compact}>
+    <details class="font-sans my-4 max-w-3xl" open={!compact}>
         <summary class="cursor-pointer underline">Read the story</summary>
         <div class="flex flex-col gap-4 my-4">
             <p>
