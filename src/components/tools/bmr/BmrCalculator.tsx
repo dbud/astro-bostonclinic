@@ -128,7 +128,7 @@ export default function BmrCalculator() {
             <p>TDEE</p>
             <p className="text-xs text-slate-500">Total Daily Energy Expenditure</p>
           </div>
-          <p className="font-mono">{tdee.toFixed(0)} kcal</p>
+          <p className="text-xl font-mono">{tdee.toFixed(0)} kcal</p>
         </div>
       </div>
     </CardFooter>
