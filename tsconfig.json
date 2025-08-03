@@ -13,7 +13,7 @@
       "node"
     ],
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
+    "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
       "@/*": [

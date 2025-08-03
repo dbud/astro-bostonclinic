@@ -4,8 +4,7 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
 import yaml from '@rollup/plugin-yaml';
-
-import preact from '@astrojs/preact';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,5 +20,5 @@ export default defineConfig({
     plugins: [tailwindcss(), yaml()]
   },
 
-  integrations: [preact()]
+  integrations: [react()]
 });
