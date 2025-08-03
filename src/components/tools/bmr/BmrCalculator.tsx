@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
+import Formula from "../Formula";
 
 type Sex = "male" | "female";
 type Activity = "sedentary" | "lightlyActive" | "moderatelyActive" | "veryActive" | "extraActive";
@@ -21,6 +22,17 @@ export default function BmrCalculator() {
     } else {
       return 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
     }
+  })();
+
+  const bmrFormula = (() => {
+    if (sex === "male") {
+      return `\\text{BMR}_{\\text{male}} = 88.362 + (13.397 \\times \\text{weight}) + (4.799 \\times \\text{height}) - (5.677 \\times \\text{age})`;
+    } else {
+      return `\\text{BMR}_{\\text{female}} = 447.593 + (9.247 \\times \\text{weight}) + (3.098 \\times \\text{height}) - (4.330 \\times \\text{age})`;
+    }
+  })();
+  const tdeeFormula = (() => {
+    return `\\text{TDEE} = \\text{BMR} \\times \\text{PAL}`;
   })();
 
   const pal = (() => {
@@ -100,23 +112,30 @@ export default function BmrCalculator() {
     </CardContent>
     <Separator />
     <CardFooter>
-      <div className="grid grid-cols-2 gap-4 gap-x-8 items-end">
-        <div>
-          <p>BMR</p>
-          <p className="text-xs text-slate-500">Basal Metabolic Rate</p>
+      <div className="flex flex-col items-start">
+        <div className="grid grid-cols-2 gap-4 gap-x-8 items-end">
+          <div>
+            <p>BMR</p>
+            <p className="text-xs text-slate-500">Basal Metabolic Rate</p>
+          </div>
+          <p className="font-mono">{bmr.toFixed(0)} kcal</p>
+          <div>
+            <p>PAL</p>
+            <p className="text-xs text-slate-500">Physical Activity Level</p>
+          </div>
+          <p className="font-mono">× {pal}</p>
+          <div>
+            <p>TDEE</p>
+            <p className="text-xs text-slate-500">Total Daily Energy Expenditure</p>
+          </div>
+          <p className="font-mono">{tdee.toFixed(0)} kcal</p>
         </div>
-        <p className="font-mono">{bmr.toFixed(0)} kcal</p>
-        <div>
-          <p>PAL</p>
-          <p className="text-xs text-slate-500">Physical Activity Level</p>
-        </div>
-        <p className="font-mono">× {pal}</p>
-        <div>
-          <p>TDEE</p>
-          <p className="text-xs text-slate-500">Total Daily Energy Expenditure</p>
-        </div>
-        <p className="font-mono">{tdee.toFixed(0)} kcal</p>
       </div>
     </CardFooter>
+    <Separator />
+    <CardContent>
+      <Formula className="text-xs mb-4" latex={bmrFormula} />
+      <Formula className="text-xs" latex={tdeeFormula} />
+    </CardContent>
   </Card>
 }
