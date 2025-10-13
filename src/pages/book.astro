@@ -1,76 +1,80 @@
 ---
-import Page from "@/layouts/Page.astro";
-
-import business from "@/data/business.yaml";
-import mapImage from "@/assets/map.png";
-import treatwell from "@/assets/treatwell.svg";
-import Phone from "@/components/Phone.astro";
-import Address from "@/components/Address.astro";
+import mapImage from '@/assets/map.png'
+import treatwell from '@/assets/treatwell.svg'
+import Address from '@/components/Address.astro'
+import Phone from '@/components/Phone.astro'
+import business from '@/data/business.yaml'
+import Page from '@/layouts/Page.astro'
 
 const { phones, address, openingHours } = business;
 ---
 
 <Page title="Book">
-    <section class="px-6 py-16 font-sans">
-        <h1 class="text-4xl font-serif">Book an Appointment</h1>
+  <section class="px-6 py-16 font-sans">
+    <h1 class="text-4xl font-serif">Book an Appointment</h1>
 
-        <div class="relative my-12 py-8 space-y-4 px-8 inline-block">
-            <span
-                class="block absolute -inset-x-4 -inset-y-5 -skew-y-2 bg-white drop-shadow-xl rounded-lg z-[-1]"
-                aria-hidden="true"></span>
+    <div class="relative my-12 py-8 space-y-4 px-8 inline-block">
+      <span
+        class="block absolute -inset-x-4 -inset-y-5 -skew-y-2 bg-white drop-shadow-xl rounded-lg z-[-1]"
+        aria-hidden="true"
+      >
+      </span>
 
-            <p class="text-lg">
-                You can call us directly to book your appointment:
-                <div class="flex text-lg gap-4 items-center flex-wrap">
-                    {phones.map((number) => <Phone number={number} />)}
-                </div>
-            </p>
-
-            <p class="h-4"></p>
-
-            <p class="text-lg">
-                Or book online via <img
-                    src={treatwell.src}
-                    alt="Treatwell"
-                    class="h-10 inline relative -top-1 -mx-1"
-                />:
-            </p>
-
-            <a
-                href="https://widget.treatwell.co.uk/place/479826/menu/"
-                target="_blank"
-                class="bg-indigo-800 text-white rounded-full px-8 py-3 drop-shadow-lg hover:bg-indigo-600 transition-colors duration-300"
-            >
-                <span>Book now</span>
-            </a>
+      <p class="text-lg">
+        You can call us directly to book your appointment:
+        <div class="flex text-lg gap-4 items-center flex-wrap">
+          {phones.map(number => <Phone number={number} />)}
         </div>
+      </p>
 
-        <div class="grid md:grid-cols-2 gap-16">
-            <div class="flex-1">
-                <h2 class="text-2xl font-serif mb-4">Find Us</h2>
-                <Address address={address} />
-                <img
-                    src={mapImage.src}
-                    alt="Map to clinic"
-                    class="rounded-xl shadow-md mt-4"
-                />
-            </div>
+      <p class="h-4"></p>
 
-            <div class="shrink-0 w-64">
-                <h2 class="text-2xl font-serif mb-4">Opening Hours</h2>
-                <ul class="space-y-2 font-sans tabular-nums">
-                    {
-                        Object.entries(openingHours).map(([day, time]) => (
-                            <li class="flex justify-between">
-                                <span>{day}</span>
-                                <span class={time ? "" : "text-slate-500"}>
-                                    {time ?? "Closed"}
-                                </span>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
-        </div>
-    </section>
+      <p class="text-lg">
+        Or book online via
+        {' '}
+        <img
+          src={treatwell.src}
+          alt="Treatwell"
+          class="h-10 inline relative -top-1 -mx-1"
+        />
+        :
+      </p>
+
+      <a
+        href="https://widget.treatwell.co.uk/place/479826/menu/"
+        target="_blank"
+        class="bg-indigo-800 text-white rounded-full px-8 py-3 drop-shadow-lg hover:bg-indigo-600 transition-colors duration-300"
+      >
+        <span>Book now</span>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-16">
+      <div class="flex-1">
+        <h2 class="text-2xl font-serif mb-4">Find Us</h2>
+        <Address address={address} />
+        <img
+          src={mapImage.src}
+          alt="Map to clinic"
+          class="rounded-xl shadow-md mt-4"
+        />
+      </div>
+
+      <div class="shrink-0 w-64">
+        <h2 class="text-2xl font-serif mb-4">Opening Hours</h2>
+        <ul class="space-y-2 font-sans tabular-nums">
+          {
+            Object.entries(openingHours).map(([day, time]) => (
+              <li class="flex justify-between">
+                <span>{day}</span>
+                <span class={time ? '' : 'text-slate-500'}>
+                  {time ?? 'Closed'}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
 </Page>

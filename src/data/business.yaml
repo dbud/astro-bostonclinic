@@ -6,10 +6,10 @@ address:
   street: 45 Craven Road, Lancaster Gate
   postcode: W2 3BX
 openingHours:
-    Monday: 10:00 — 17:00
-    Tuesday: 10:00 — 17:00
-    Wednesday: null
-    Thursday: 10:00 — 17:00
-    Friday: 10:00 — 17:00
-    Saturday: null
-    Sunday: null
+  Monday: 10:00 — 17:00
+  Tuesday: 10:00 — 17:00
+  Wednesday: null
+  Thursday: 10:00 — 17:00
+  Friday: 10:00 — 17:00
+  Saturday: null
+  Sunday: null

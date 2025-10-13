@@ -1,15 +1,15 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
+import Footer from '@/components/Footer.astro'
+import Header from '@/components/Header.astro'
+import Layout from '@/layouts/Layout.astro'
 
 const { title } = Astro.props;
 ---
 
 <Layout title={title}>
-    <Header />
-    <main class="prose prose-neutral max-w-7xl mx-auto font-sans p-12 pb-24">
-        <slot />
-    </main>
-    <Footer />
+  <Header />
+  <main class="prose prose-neutral max-w-7xl mx-auto font-sans p-12 pb-24">
+    <slot />
+  </main>
+  <Footer />
 </Layout>

@@ -2,95 +2,91 @@
 import treatments from "@/data/treatments.yaml";
 
 const repeat = (c: string, n: number) => {
-    let s = "";
-    for (let i = 0; i < n; i++) s += c;
-    return s;
+  let s = "";
+  for (let i = 0; i < n; i++) s += c;
+  return s;
 };
 
 const DOTS = repeat(".", 250);
 ---
 
 <div class="p-12">
-    <div id="treatment-sentinel" class="relative top-[-150px]"></div>
-    <h1 class="text-4xl">Treatments</h1>
-    <div class="flex flex-col my-8 relative">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 my-4 lg:grid-cols-3">
-            {
-                treatments.map(({ name, description, options }) => (
-                    <div class="relative">
-                        <span
-                            class="block absolute -inset-x-4 -inset-y-3 -skew-y-2 bg-stone-50 -z-10 drop-shadow-xl rounded-lg"
-                            aria-hidden="true"
-                        />
-                        <div class="pt-2 mb-8 flex justify-between align-baseline relative">
-                            <span
-                                class="block absolute -inset-x-4 -inset-y-3 -skew-y-2 bg-gradient-to-b from-stone-100 to-white -z-5 drop-shadow-lg/5 rounded-t-lg"
-                                aria-hidden="true"
-                            />
-                            <p class="text-xl">{name}</p>
-                        </div>
-                        <p>{description}</p>
-                        <div class="my-4 font-sans">
-                            {options.map(({ name, price }) =>
-                                price ? (
-                                    <div class="relative flex justify-between items-end overflow-hidden lining-nums">
-                                        <span
-                                            class="z-0 absolute bottom-0 text-slate-400"
-                                            aria-hidden="true"
-                                        >
-                                            {DOTS}
-                                        </span>
-                                        <p class="z-10">
-                                            <span class="bg-stone-50 pr-2">
-                                                {name}
-                                            </span>
-                                        </p>
-                                        <div class="min-w-4" />
-                                        <p class="z-10 text-purple-900 tracking-wide bg-stone-50 pl-1">
-                                            £{price}
-                                        </p>
-                                    </div>
-                                ) : (
-                                    <div class="text-slate-500 mt-4 text-sm">
-                                        {name}
-                                    </div>
-                                ),
-                            )}
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
-
-        <div
-            id="floating-button"
-            class="z-10 sticky bottom-16 flex justify-center transition-all duration-500 translate-y-24 opacity-0 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
-        >
-            <a
-                href="/book"
-                class="bg-indigo-800 border-t-2 border-l-1 border-indigo-300 text-white px-6 py-3 rounded-full font-sans drop-shadow-[0px_10px_20px_rgba(0,0,0,0.7)] animate-bounce"
-            >
-                Book a consultation
-            </a>
-        </div>
+  <div id="treatment-sentinel" class="relative top-[-150px]"></div>
+  <h1 class="text-4xl">Treatments</h1>
+  <div class="flex flex-col my-8 relative">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 my-4 lg:grid-cols-3">
+      {
+        treatments.map(({ name, description, options }) => (
+          <div class="relative">
+            <span
+              class="block absolute -inset-x-4 -inset-y-3 -skew-y-2 bg-stone-50 -z-10 drop-shadow-xl rounded-lg"
+              aria-hidden="true"
+            />
+            <div class="pt-2 mb-8 flex justify-between align-baseline relative">
+              <span
+                class="block absolute -inset-x-4 -inset-y-3 -skew-y-2 bg-gradient-to-b from-stone-100 to-white -z-5 drop-shadow-lg/5 rounded-t-lg"
+                aria-hidden="true"
+              />
+              <p class="text-xl">{name}</p>
+            </div>
+            <p>{description}</p>
+            <div class="my-4 font-sans">
+              {options.map(({ name, price }) =>
+                price ? (
+                  <div class="relative flex justify-between items-end overflow-hidden lining-nums">
+                    <span
+                      class="z-0 absolute bottom-0 text-slate-400"
+                      aria-hidden="true"
+                    >
+                      {DOTS}
+                    </span>
+                    <p class="z-10">
+                      <span class="bg-stone-50 pr-2">{name}</span>
+                    </p>
+                    <div class="min-w-4" />
+                    <p class="z-10 text-purple-900 tracking-wide bg-stone-50 pl-1">
+                      £{price}
+                    </p>
+                  </div>
+                ) : (
+                  <div class="text-slate-500 mt-4 text-sm">{name}</div>
+                ),
+              )}
+            </div>
+          </div>
+        ))
+      }
     </div>
+
+    <div
+      id="floating-button"
+      class="z-10 sticky bottom-16 flex justify-center transition-all duration-500 translate-y-24 opacity-0 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
+    >
+      <a
+        href="/book"
+        class="bg-indigo-800 border-t-2 border-l-1 border-indigo-300 text-white px-6 py-3 rounded-full font-sans drop-shadow-[0px_10px_20px_rgba(0,0,0,0.7)] animate-bounce"
+      >
+        Book a consultation
+      </a>
+    </div>
+  </div>
 </div>
 
 <script>
-    const button = document.getElementById("floating-button");
-    const sentinel = document.getElementById("treatment-sentinel");
+  const button = document.getElementById('floating-button')
+  const sentinel = document.getElementById('treatment-sentinel')
 
-    const observer = new IntersectionObserver(
-        ([entry]) => {
-            button?.setAttribute(
-                "data-visible",
-                entry.isIntersecting ? "false" : "true",
-            );
-        },
-        { root: null, threshold: 0 },
-    );
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      button?.setAttribute(
+        'data-visible',
+        entry.isIntersecting ? 'false' : 'true',
+      )
+    },
+    { root: null, threshold: 0 },
+  )
 
-    if (sentinel) {
-        observer.observe(sentinel);
-    }
+  if (sentinel) {
+    observer.observe(sentinel)
+  }
 </script>

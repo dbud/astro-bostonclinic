@@ -1,12 +1,11 @@
 ---
-import Page from "@/layouts/Page.astro";
-import About from "@/components/About.astro";
-import Treatments from "@/components/Treatments.astro";
-
-import business from "@/data/business.yaml";
+import About from '@/components/About.astro'
+import Treatments from '@/components/Treatments.astro'
+import business from '@/data/business.yaml'
+import Page from '@/layouts/Page.astro';
 ---
 
 <Page title={business.name}>
-    <About />
-    <Treatments />
+  <About />
+  <Treatments />
 </Page>

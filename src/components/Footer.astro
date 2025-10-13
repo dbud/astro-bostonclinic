@@ -1,26 +1,29 @@
 ---
-import Phone from "./Phone.astro";
-import Address from "./Address.astro";
+import business from '@/data/business.yaml'
 
-import business from "@/data/business.yaml";
+import Address from './Address.astro'
+import Phone from './Phone.astro'
 const { name, address, phones } = business;
 ---
 
 <footer class="bg-slate-800 text-white pt-8 pb-24 font-sans">
-    <div class="p-8 max-w-7xl mx-auto">
-        <p class="text-2xl my-6 font-serif">
-            &copy;&nbsp;{new Date().getFullYear()}&nbsp;&mdash;&nbsp;{name}
-        </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <div class="flex flex-col tracking-wider space-y-2">
-                <Address address={address} />
-                {phones.map((number) => <Phone number={number} />)}
-            </div>
-            <div class="flex flex-col space-y-2">
-                <a href="/terms-and-conditions">Terms & Conditions</a>
-                <a href="/privacy-policy">Privacy Policy</a>
-                <a href="/license">License</a>
-            </div>
-        </div>
+  <div class="p-8 max-w-7xl mx-auto">
+    <p class="text-2xl my-6 font-serif">
+      &copy;&nbsp;
+      {new Date().getFullYear()}
+&nbsp;&mdash;&nbsp;
+      {name}
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <div class="flex flex-col tracking-wider space-y-2">
+        <Address address={address} />
+        {phones.map(number => <Phone number={number} />)}
+      </div>
+      <div class="flex flex-col space-y-2">
+        <a href="/terms-and-conditions">Terms & Conditions</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/license">License</a>
+      </div>
     </div>
+  </div>
 </footer>

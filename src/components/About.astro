@@ -1,89 +1,91 @@
 ---
 import photo from "@/assets/malti-sm.jpg";
-const { compact = true } = Astro.props;
+  const { compact = true } = Astro.props;
 ---
 
 <div class="p-12 max-w-7xl">
-    <h1 class="text-4xl">Sister Malti O’Mahony BSc.</h1>
-    <p class="my-4 font-sans">
-        Clinical&nbsp;Director&nbsp;/ Lead&nbsp;Trainer&nbsp;/
-        Boston&nbsp;International&nbsp;Training&nbsp;Academy&nbsp;Ltd&nbsp;/
-        Harley&nbsp;Street&nbsp;Treatments&nbsp;Ltd
-    </p>
+  <h1 class="text-4xl">Sister Malti O’Mahony BSc.</h1>
+  <p class="my-4 font-sans">
+    Clinical&nbsp;Director&nbsp;/ Lead&nbsp;Trainer&nbsp;/
+    Boston&nbsp;International&nbsp;Training&nbsp;Academy&nbsp;Ltd&nbsp;/
+    Harley&nbsp;Street&nbsp;Treatments&nbsp;Ltd
+  </p>
 
-    <div
-        class="flex flex-col md:flex-row items-center flex-wrap justify-center md:justify-start gap-12 my-8"
-    >
-        <div class="w-48 h-48 overflow-hidden rounded-full shrink-0">
-            <img
-                src={photo.src}
-                alt="Malti O'Mahony"
-                class="w-full h-full object-cover"
-            />
-        </div>
-
-        <div class="italic text-xl relative w-full max-w-md md:w-auto">
-            <span
-                class="block absolute -inset-x-4 -inset-y-5 -skew-y-2 bg-white drop-shadow-xl rounded-lg"
-                aria-hidden="true"></span>
-            <span class="relative block">
-                — ‘It should always be more than just about giving
-                treatments—it’s about assessing each individual client, giving
-                them honest advice, support, results and personal care.’
-            </span>
-        </div>
+  <div
+    class="flex flex-col md:flex-row items-center flex-wrap justify-center md:justify-start gap-12 my-8"
+  >
+    <div class="w-48 h-48 overflow-hidden rounded-full shrink-0">
+      <img
+        src={photo.src}
+        alt="Malti O'Mahony"
+        class="w-full h-full object-cover"
+      />
     </div>
 
-    <p class="font-sans max-w-3xl">
-        Sister Malti O’Mahony has over 20 years of Aesthetic experience and
-        expertise—and highly regarded within the Aesthetic Industry as being one
-        of the most established practitioners in England and Europe.
-    </p>
+    <div class="italic text-xl relative w-full max-w-md md:w-auto">
+      <span
+        class="block absolute -inset-x-4 -inset-y-5 -skew-y-2 bg-white drop-shadow-xl rounded-lg"
+        aria-hidden="true"
+      >
+      </span>
+      <span class="relative block">
+        — ‘It should always be more than just about giving treatments—it’s about
+        assessing each individual client, giving them honest advice, support,
+        results and personal care.’
+      </span>
+    </div>
+  </div>
 
-    <details class="font-sans my-4 max-w-3xl" open={!compact}>
-        <summary class="cursor-pointer underline">Read the story</summary>
-        <div class="flex flex-col gap-4 my-4">
-            <p>
-                Malti came to England from India in the 1980s to advance her
-                studies as a Nurse—and brought with her a more holistic approach
-                to patient care. She trained at St Mary’s Hospital, London and
-                spent 10 years in the NHS, further developing her career in
-                numerous senior roles. One of those roles was a neurosurgery
-                theatre sister in Royal Free Hospital for 4 years. She then
-                expanded her experience at the renowned London Clinic, working
-                alongside some of the world’s leading Plastic and Cosmetic
-                Surgeons.
-            </p>
-            <p>
-                In 1998 Malti went on to establish Harley Street Treatments Ltd
-                as Clinical Director. The clinic was medically-led and
-                results-driven, delivered only by medical professionals
-                experienced in anti-ageing treatments, using the latest medical
-                aesthetic technology in a clinical, yet released setting. Under
-                Malti’s direction, it soon was considered by its many clients
-                and the Press as <em>`the`</em>{" "}
-                anti-ageing clinic of choice to go to in London.
-            </p>
-            <p>
-                Respected and trusted by medical professionals who come to her
-                to be trained in Advanced Aesthetic Treatments—Malti has
-                recently launched MALTI AESTHETICS in Notting Hill, London.
-                There, in addition to offering clients a wide range of
-                treatments, she also teaches both Foundation and Advanced
-                Courses to practitioners, to help them start their own careers.
-                She also allows them to shadow her in her busy practice.
-            </p>
-            <p>
-                She’s published several papers in journals, designed Britain’s
-                first university-credited Mesotherapy Course and invited to be a
-                Speaker at many National and International Meetings.
-            </p>
-            <p>
-                Malti’s personality, level of trusted expertise and work ethic
-                are just a few of the many reasons why she has such a loyal
-                following. Aesthetics is a truly deep passion of hers, and
-                that’s the principle reason why she’s such a success.
-            </p>
-        </div>
-    </details>
+  <p class="font-sans max-w-3xl">
+    Sister Malti O’Mahony has over 20 years of Aesthetic experience and
+    expertise—and highly regarded within the Aesthetic Industry as being one of
+    the most established practitioners in England and Europe.
+  </p>
+
+  <details class="font-sans my-4 max-w-3xl" open={!compact}>
+    <summary class="cursor-pointer underline">Read the story</summary>
+    <div class="flex flex-col gap-4 my-4">
+      <p>
+        Malti came to England from India in the 1980s to advance her studies as
+        a Nurse—and brought with her a more holistic approach to patient care.
+        She trained at St Mary’s Hospital, London and spent 10 years in the NHS,
+        further developing her career in numerous senior roles. One of those
+        roles was a neurosurgery theatre sister in Royal Free Hospital for 4
+        years. She then expanded her experience at the renowned London Clinic,
+        working alongside some of the world’s leading Plastic and Cosmetic
+        Surgeons.
+      </p>
+      <p>
+        In 1998 Malti went on to establish Harley Street Treatments Ltd as
+        Clinical Director. The clinic was medically-led and results-driven,
+        delivered only by medical professionals experienced in anti-ageing
+        treatments, using the latest medical aesthetic technology in a clinical,
+        yet released setting. Under Malti’s direction, it soon was considered by
+        its many clients and the Press as
+        {" "}
+        <em>`the`</em>
+        {" "}
+        anti-ageing clinic of choice to go to in London.
+      </p>
+      <p>
+        Respected and trusted by medical professionals who come to her to be
+        trained in Advanced Aesthetic Treatments—Malti has recently launched
+        MALTI AESTHETICS in Notting Hill, London. There, in addition to offering
+        clients a wide range of treatments, she also teaches both Foundation and
+        Advanced Courses to practitioners, to help them start their own careers.
+        She also allows them to shadow her in her busy practice.
+      </p>
+      <p>
+        She’s published several papers in journals, designed Britain’s first
+        university-credited Mesotherapy Course and invited to be a Speaker at
+        many National and International Meetings.
+      </p>
+      <p>
+        Malti’s personality, level of trusted expertise and work ethic are just
+        a few of the many reasons why she has such a loyal following. Aesthetics
+        is a truly deep passion of hers, and that’s the principle reason why
+        she’s such a success.
+      </p>
+    </div>
+  </details>
 </div>
