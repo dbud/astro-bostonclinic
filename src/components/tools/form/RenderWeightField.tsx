@@ -5,8 +5,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import type { WeightField } from '@/types/form'
 
 import { InputGroupNumberInput } from './InputGroupNumberInput'
-import Required from './Required'
-import useFormState from './useFormState'
+import { useFormFieldState } from './useFormState'
 
 type Mode = 'kg' | 'st/lbs' | 'lbs'
 
@@ -26,14 +25,13 @@ function recalcFromKg(kg: number, mode: Mode) {
 }
 
 export default function RenderWeightField({ field }: { field: WeightField }) {
-  const { state, setState } = useFormState()
+  const { value, setValue } = useFormFieldState<number>(field)
   const [mode, setMode] = useState<Mode>('kg')
 
-  const kg = Number(state[field.id])
-  const setKg = (value: unknown) => {
+  const kg = Number(value)
+  const setKg = (value: number | undefined) => {
     const num = Number(value)
-    const rounded = Number.isNaN(num) ? null : Math.round(num * 10) / 10
-    setState({ ...state, [field.id]: rounded })
+    setValue((Number.isNaN(num) ? null : Math.round(num * 10) / 10))
   }
 
   const { st: initialSt, lbs: initialLbs } = recalcFromKg(kg, mode)
@@ -102,19 +100,17 @@ export default function RenderWeightField({ field }: { field: WeightField }) {
   }
 
   return (
-    <Required field={field}>
-      <div className="flex flex-row justify-between gap-4">
-        {inputs}
-        <ToggleGroup type="single" variant="outline" value={mode}>
-          {(
-            ['kg', 'st/lbs', 'lbs'] as Mode[]
-          ).map(m => (
-            <ToggleGroupItem value={m} key={m} onClick={() => switchToMode(m)}>
-              <span className="p-2">{m}</span>
-            </ToggleGroupItem>
-          ))}
-        </ToggleGroup>
-      </div>
-    </Required>
+    <div className="flex flex-row justify-between gap-4">
+      {inputs}
+      <ToggleGroup type="single" variant="outline" value={mode}>
+        {(
+          ['kg', 'st/lbs', 'lbs'] as Mode[]
+        ).map(m => (
+          <ToggleGroupItem value={m} key={m} onClick={() => switchToMode(m)}>
+            <span className="p-2">{m}</span>
+          </ToggleGroupItem>
+        ))}
+      </ToggleGroup>
+    </div>
   )
 }

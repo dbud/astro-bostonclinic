@@ -3,24 +3,22 @@ import { type SelectField } from '@/types/form'
 
 import RenderField from './RenderField'
 import Required from './Required'
-import useFormState from './useFormState'
+import { useFormFieldState } from './useFormState'
 
 export default function RenderSelectField({ field }: { field: SelectField }) {
-  const { state, setState } = useFormState()
-  const followup = (field.followup ?? {})[state[field.id] as string]
+  const { value, setValue } = useFormFieldState<string>(field)
+  const followup = (field.followup ?? {})[value]
   return (
     <>
       <Select
-        onValueChange={value => setState({ ...state, [field.id]: value })}
-        value={state[field.id] as string ?? ''}
+        onValueChange={value => setValue(value)}
+        value={value ?? ''}
       >
-        <Required field={field}>
-          <SelectTrigger>
-            <SelectValue
-              placeholder={field.placeholder || 'Select an option'}
-            />
-          </SelectTrigger>
-        </Required>
+        <SelectTrigger>
+          <SelectValue
+            placeholder={field.placeholder || 'Select an option'}
+          />
+        </SelectTrigger>
         <SelectContent>
           {Object.entries(field.options).map(([key, value]) => (
             <SelectItem key={key} value={key}>
@@ -29,7 +27,11 @@ export default function RenderSelectField({ field }: { field: SelectField }) {
           ))}
         </SelectContent>
       </Select>
-      {followup && <RenderField field={followup} />}
+      {followup && (
+        <Required field={followup}>
+          <RenderField field={followup} />
+        </Required>
+      )}
     </>
   )
 }

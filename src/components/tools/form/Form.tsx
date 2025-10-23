@@ -12,13 +12,18 @@ export function Form({ form }: { form: Form }) {
   const [state, setState] = useState<State>({})
   const [index, setIndex] = useState(1)
 
-  function validate(field: Field) {
+  function validate(field: Field | undefined): boolean {
+    if (!field) return true
     if (field.optional) return true
     const value = state[field.id]
     if (value === undefined || value === null || value === '') return false
     if (field.type === 'select') {
-      const followup = (field.followup ?? {})[value as string]
-      if (followup) return validate(followup)
+      return validate((field.followup ?? {})[value as string])
+    }
+    if (field.type === 'multi-select') {
+      if (!(value instanceof Set)) return false
+      if (value.size === 0) return false
+      return Array.from(value).every(option => validate((field.followup ?? {})[option as string]))
     }
     if (field.type === 'weight' || field.type === 'height') return value as number > 0
     return true
@@ -38,7 +43,13 @@ export function Form({ form }: { form: Form }) {
             : undefined
         }
       />
-      <pre className="text-sm p-6">{JSON.stringify(state, null, 2)}</pre>
+      <pre className="text-sm p-6">
+        {JSON.stringify(
+          state,
+          (_key, value) => (value instanceof Set ? [...value] : value),
+          2,
+        )}
+      </pre>
     </StateContext.Provider>
   )
 }

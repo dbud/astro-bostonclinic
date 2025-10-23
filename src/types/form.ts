@@ -1,44 +1,45 @@
-export type TextField = {
-  type: 'text'
+type BaseField = {
+  type: string
   id: string
-  placeholder: string
   label?: string
+  sublabel?: string
   optional?: boolean
+}
+
+export type TextField = BaseField & {
+  type: 'text'
+  placeholder: string
   lines?: number
 }
 
-export type DatePickerField = {
+export type DatePickerField = BaseField & {
   type: 'date-picker'
-  id: string
-  label?: string
-  optional?: boolean
 }
 
-export type SelectField = {
+export type SelectField = BaseField & {
   type: 'select'
   placeholder: string
-  label?: string
-  id: string
   options: { [key: string]: string }
-  optional?: boolean
   followup: { [key: string]: Field }
 }
 
-export type WeightField = {
+export type MultiSelectField = BaseField & {
+  type: 'multi-select'
+  placeholder: string
+  options: { [key: string]: string }
+  none?: boolean
+  followup: { [key: string]: Field }
+}
+
+export type WeightField = BaseField & {
   type: 'weight'
-  label?: string
-  id: string
-  optional?: boolean
 }
 
-export type HeightField = {
+export type HeightField = BaseField & {
   type: 'height'
-  label?: string
-  id: string
-  optional?: boolean
 }
 
-export type Field = TextField | DatePickerField | SelectField | WeightField | HeightField
+export type Field = TextField | DatePickerField | SelectField | WeightField | HeightField | MultiSelectField
 
 export type Section
   = | { type: 'fields', fields: Field[] } | { type: 'separator' }

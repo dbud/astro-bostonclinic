@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { type Section } from '@/types/form'
 
 import RenderField from './RenderField'
+import Required from './Required'
 
 export default function RenderSection({
   section,
@@ -24,7 +25,10 @@ export default function RenderSection({
           )}
           key={field.id}
         >
-          {field.label && <Label htmlFor={field.id}>{field.label}</Label>}
+          <Required field={field}>
+            {field.label && <Label htmlFor={field.id}>{field.label}</Label>}
+          </Required>
+          {field.sublabel && <Label className="font-normal text-slate-500" htmlFor={field.id}>{field.sublabel}</Label>}
           <RenderField field={field} />
         </div>
       ))

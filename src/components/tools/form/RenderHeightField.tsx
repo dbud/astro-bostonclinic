@@ -5,8 +5,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import type { HeightField } from '@/types/form'
 
 import { InputGroupNumberInput } from './InputGroupNumberInput'
-import Required from './Required'
-import useFormState from './useFormState'
+import { useFormFieldState } from './useFormState'
 
 type Mode = 'cm' | 'ft/in'
 
@@ -26,14 +25,13 @@ function recalcFromCm(cm: number, mode: Mode) {
 }
 
 export default function RenderHeightField({ field }: { field: HeightField }) {
-  const { state, setState } = useFormState()
+  const { value, setValue } = useFormFieldState<number>(field)
   const [mode, setMode] = useState<Mode>('cm')
 
-  const cm = Math.round(Number(state[field.id]))
-  const setCm = (value: unknown) => {
+  const cm = Math.round(Number(value))
+  const setCm = (value: number | undefined) => {
     const num = Number(value)
-    const rounded = Number.isNaN(num) ? null : Math.round(num)
-    setState({ ...state, [field.id]: rounded })
+    setValue((Number.isNaN(num) ? null : Math.round(num)))
   }
 
   const { ft: initialFt, inch: initialInch } = recalcFromCm(cm, mode)
@@ -91,19 +89,17 @@ export default function RenderHeightField({ field }: { field: HeightField }) {
   }
 
   return (
-    <Required field={field}>
-      <div className="flex flex-row justify-between gap-4">
-        {inputs}
-        <ToggleGroup type="single" variant="outline" value={mode}>
-          {(
-            ['cm', 'ft/in'] as Mode[]
-          ).map(m => (
-            <ToggleGroupItem value={m} key={m} onClick={() => switchToMode(m)}>
-              <span className="p-2">{m}</span>
-            </ToggleGroupItem>
-          ))}
-        </ToggleGroup>
-      </div>
-    </Required>
+    <div className="flex flex-row justify-between gap-4">
+      {inputs}
+      <ToggleGroup type="single" variant="outline" value={mode}>
+        {(
+          ['cm', 'ft/in'] as Mode[]
+        ).map(m => (
+          <ToggleGroupItem value={m} key={m} onClick={() => switchToMode(m)}>
+            <span className="p-2">{m}</span>
+          </ToggleGroupItem>
+        ))}
+      </ToggleGroup>
+    </div>
   )
 }
