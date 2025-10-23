@@ -5,48 +5,7 @@ declare namespace App {
 }
 
 declare module '*/consultation-form.yaml' {
-  export type TextField = {
-    type: 'text'
-    id: string
-    placeholder: string
-    label?: string
-    optional?: boolean
-    lines?: number
-  }
-
-  export type DatePickerField = {
-    type: 'date-picker'
-    id: string
-    label?: string
-    optional?: boolean
-  }
-
-  export type SelectField = {
-    type: 'select'
-    placeholder: string
-    label?: string
-    id: string
-    options: { [key: string]: string }
-    optional?: boolean
-    followup: { [key: string]: Field }
-  }
-
-  export type Field = TextField | DatePickerField | SelectField
-
-  export type Section
-    = | { type: 'fields', fields: Field[] }
-      | { type: 'separator' }
-
-  export type Page = {
-    page: string
-    description?: string
-    sections: Section[]
-  }
-
-  export type Form = {
-    pages: Page[]
-  }
-
+  import { type Form } from '@types/form'
   const value: Form
   export default value
 }
