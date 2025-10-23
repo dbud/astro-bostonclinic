@@ -1,6 +1,6 @@
 type BaseField = {
   type: string
-  id: string
+  id?: string
   label?: string
   sublabel?: string
   optional?: boolean
@@ -18,15 +18,16 @@ export type DatePickerField = BaseField & {
 
 export type SelectField = BaseField & {
   type: 'select'
+  radio?: boolean
   placeholder: string
-  options: { [key: string]: string }
+  options: string[] | { [key: string]: string }
   followup: { [key: string]: Field }
 }
 
 export type MultiSelectField = BaseField & {
   type: 'multi-select'
   placeholder: string
-  options: { [key: string]: string }
+  options: string[] | { [key: string]: string }
   none?: boolean
   followup: { [key: string]: Field }
 }

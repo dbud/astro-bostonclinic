@@ -28,7 +28,7 @@ export default function RenderSection({
           <Required field={field}>
             {field.label && <Label htmlFor={field.id}>{field.label}</Label>}
           </Required>
-          {field.sublabel && <Label className="font-normal text-slate-500" htmlFor={field.id}>{field.sublabel}</Label>}
+          {field.sublabel && <Label className="font-normal text-slate-600 leading-snug mb-1" htmlFor={field.id}>{field.sublabel}</Label>}
           <RenderField field={field} />
         </div>
       ))
