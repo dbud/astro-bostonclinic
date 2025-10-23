@@ -8,6 +8,8 @@ type StateContextType = {
   state: State
   setState: Dispatch<SetStateAction<State>>
   validate: (field: Field) => boolean
+  pages: number
+  currentPage: number
 }
 export const StateContext = createContext<StateContextType>(null!)
 

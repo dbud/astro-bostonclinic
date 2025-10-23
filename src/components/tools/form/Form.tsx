@@ -30,7 +30,12 @@ export function Form({ form }: { form: Form }) {
   }
 
   return (
-    <StateContext.Provider value={{ state, setState, validate }}>
+    <StateContext.Provider value={{
+      state, setState,
+      validate,
+      currentPage: index, pages: form.pages.length,
+    }}
+    >
       <Page
         page={form.pages[index]}
         onBack={index > 0 ? () => setIndex(index - 1) : undefined}
