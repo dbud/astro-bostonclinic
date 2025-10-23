@@ -1,0 +1,44 @@
+import { useState } from 'react'
+
+import {
+  type Field,
+  type Form,
+} from '@/types/form'
+
+import Page from './Page'
+import { type State, StateContext } from './useFormState'
+
+export function Form({ form }: { form: Form }) {
+  const [state, setState] = useState<State>({})
+  const [index, setIndex] = useState(1)
+
+  function validate(field: Field) {
+    if (field.optional) return true
+    const value = state[field.id]
+    if (value === undefined || value === null || value === '') return false
+    if (field.type === 'select') {
+      const followup = (field.followup ?? {})[value as string]
+      if (followup) return validate(followup)
+    }
+    if (field.type === 'weight' || field.type === 'height') return value as number > 0
+    return true
+  }
+
+  return (
+    <StateContext.Provider value={{ state, setState, validate }}>
+      <Page
+        page={form.pages[index]}
+        onBack={index > 0 ? () => setIndex(index - 1) : undefined}
+        onNext={
+          index < form.pages.length - 1 ? () => setIndex(index + 1) : undefined
+        }
+        onSubmit={
+          index === form.pages.length - 1
+            ? () => alert('Form submitted!')
+            : undefined
+        }
+      />
+      <pre className="text-sm p-6">{JSON.stringify(state, null, 2)}</pre>
+    </StateContext.Provider>
+  )
+}
