@@ -8,7 +8,7 @@ export default function RenderFollowUp({ followup, id }: { id: string, followup:
   if (!followup) return null
   const field = { ...followup, id }
   return (
-    <div className="ml-6">
+    <div className="ml-8 pt-1">
       <Required field={field}>
         {field.label && <Label className="my-3" htmlFor={field.id}>{field.label}</Label>}
       </Required>

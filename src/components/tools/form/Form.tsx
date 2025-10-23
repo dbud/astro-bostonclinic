@@ -1,16 +1,26 @@
 import { useState } from 'react'
 
+import deriveIds from '@/lib/derive-ids'
 import {
   type Field,
   type Form,
+  type SelectableField,
 } from '@/types/form'
 
 import Page from './Page'
 import { type State, StateContext } from './useFormState'
 
-export function Form({ form }: { form: Form }) {
+export function Form(props: { form: Form }) {
+  const form = deriveIds(props.form)
+
   const [state, setState] = useState<State>({})
   const [index, setIndex] = useState(1)
+
+  function validateFollowup(field: SelectableField, key: unknown) {
+    const followup = (field.followup ?? {})[key as string]
+    if (!followup) return true
+    return validate({ ...followup, id: `${field.id}.${key}` })
+  }
 
   function validate(field: Field | undefined): boolean {
     if (!field) return true
@@ -18,12 +28,12 @@ export function Form({ form }: { form: Form }) {
     const value = state[field.id]
     if (value === undefined || value === null || value === '') return false
     if (field.type === 'select') {
-      return validate((field.followup ?? {})[value as string])
+      return validateFollowup(field, value)
     }
     if (field.type === 'multi-select') {
       if (!(value instanceof Set)) return false
       if (value.size === 0) return false
-      return Array.from(value).every(option => validate((field.followup ?? {})[option as string]))
+      return Array.from(value).every(option => validateFollowup(field, option))
     }
     if (field.type === 'weight' || field.type === 'height') return value as number > 0
     return true

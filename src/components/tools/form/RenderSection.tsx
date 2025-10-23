@@ -21,7 +21,7 @@ export default function RenderSection({
         <div
           className={cn(
             'flex-1 flex flex-col gap-2',
-            !first && section.fields.find(field => field.label) && 'mt-2',
+            !first && section.fields.find(field => field.label) && 'mt-6',
           )}
           key={field.id}
         >

@@ -44,7 +44,6 @@ export function RenderDropDownField({ field }: { field: SelectField }) {
 }
 
 export function RenderRadioField({ field }: { field: SelectField }) {
-  console.log(field)
   const { value, setValue } = useFormFieldState<string>(field)
   return (
     <RadioGroup
