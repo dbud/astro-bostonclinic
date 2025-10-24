@@ -1,6 +1,7 @@
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import allEntries from '@/lib/all-entries'
+import { deriveFollowupId } from '@/lib/derive-ids'
 import { type MultiSelectField } from '@/types/form'
 
 import RenderFollowUp from './RenderFollowUp'
@@ -39,7 +40,7 @@ export default function RenderMultiSelectField({ field }: { field: MultiSelectFi
               />
               <Label htmlFor={key} className="font-normal">{text}</Label>
             </div>
-            <RenderFollowUp followup={followup} id={`${field.id}.${key}`} />
+            <RenderFollowUp followup={followup} id={deriveFollowupId(field, key)} />
           </div>
         )
       })}

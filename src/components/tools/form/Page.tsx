@@ -67,6 +67,7 @@ export default function Page({
     .filter(section => section.type === 'fields')
     .flatMap(section => section.fields)
     .every(validate)
+    || true /* REMOVE THIS */
 
   return (
     <Card className="max-w-xl">

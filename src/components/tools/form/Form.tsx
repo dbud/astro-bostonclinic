@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import deriveIds from '@/lib/derive-ids'
+import deriveIds, { deriveFollowupId } from '@/lib/derive-ids'
 import {
   type Field,
   type Form,
@@ -19,7 +19,7 @@ export function Form(props: { form: Form }) {
   function validateFollowup(field: SelectableField, key: unknown) {
     const followup = (field.followup ?? {})[key as string]
     if (!followup) return true
-    return validate({ ...followup, id: `${field.id}.${key}` })
+    return validate({ ...followup, id: deriveFollowupId(field, key) })
   }
 
   function validate(field: Field | undefined): boolean {

@@ -1,8 +1,12 @@
-import type { Form } from '@/types/form'
+import type { Form, SelectableField } from '@/types/form'
 
 function sanitize(label: string | undefined) {
   if (!label) return label // throw?
   return label.toLocaleLowerCase().replaceAll(/\W+/g, ' ').trim().replaceAll(' ', '-').slice(0, 80)
+}
+
+export function deriveFollowupId(field: SelectableField, key: unknown | undefined) {
+  return `${field.id}.${sanitize(key as string | undefined)}`
 }
 
 export default function deriveIds(form: Form): Form {
