@@ -9,18 +9,6 @@ import { useFormFieldState } from './useFormState'
 
 const NONE_KEY = 'none'
 
-// comment
-
-class MyType {
-  constructor() {
-  }
-
-  method() {
-  }
-}
-
-function f() { }
-
 export default function RenderMultiSelectField({ field }: { field: MultiSelectField }) {
   const { value, setValue } = useFormFieldState<Set<string>>(field)
   const entries = allEntries(field.options)

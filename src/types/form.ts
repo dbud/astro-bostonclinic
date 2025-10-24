@@ -53,5 +53,6 @@ export type Page = {
 }
 
 export type Form = {
+  endpoint: string
   pages: Page[]
 }

@@ -48,14 +48,12 @@ export function Form(props: { form: Form }) {
 
   const onSubmit = useCallback(async () => {
     try {
-      const res = await fetch('/api/verify-turnstile', {
+      const res = await fetch(form.endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, form }),
       })
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const json = await res.json() as any
+      const json = await res.json() as { ok: boolean, reason?: string }
 
       if (json.ok) {
         alert('Yes token valid')
@@ -88,15 +86,7 @@ export function Form(props: { form: Form }) {
             ? onSubmit
             : undefined
         }
-
       />
-      {/* <pre className="text-sm p-6">
-        {JSON.stringify(
-          state,
-          (_key, value) => (value instanceof Set ? [...value] : value),
-          2,
-        )}
-      </pre> */}
       <div className="max-w-xl py-4 flex justify-end">
         <Turnstile
           siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? PUBLIC_TURNSTILE_SITE_KEY}

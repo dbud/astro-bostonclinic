@@ -11,6 +11,7 @@ export function deriveFollowupId(field: SelectableField, key: unknown | undefine
 
 export default function deriveIds(form: Form): Form {
   return {
+    ...form,
     pages: form.pages.map(page => ({
       ...page,
       sections: page.sections.map((section) => {
