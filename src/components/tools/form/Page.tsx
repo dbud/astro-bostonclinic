@@ -9,6 +9,7 @@ import { splitAt } from '@/lib/split-at'
 import { type Page } from '@/types/form'
 
 import RenderSection from './RenderSection'
+import { Invalid } from './Required'
 import useFormState from './useFormState'
 
 function PageContent({ page }: { page: Page }) {
@@ -69,10 +70,21 @@ export default function Page({
     .every(validate)
     || true /* REMOVE THIS */
 
+  const styleProps = {
+    disabled: !valid,
+    variant: valid ? 'default' : 'outline',
+  } as const
+
   return (
     <Card className="max-w-xl">
       <PageContent page={page} />
       <Separator />
+      {!valid
+        && (
+          <CardFooter className="flex justify-end">
+            <Invalid><span className="text-sm">Questions marked with asterisk are required</span></Invalid>
+          </CardFooter>
+        )}
       <CardFooter className="flex justify-between">
         {onBack && (
           <Button variant="secondary" onClick={onBack}>
@@ -82,14 +94,14 @@ export default function Page({
           </Button>
         )}
         {onNext && (
-          <Button className="ml-auto" onClick={onNext} disabled={!valid}>
+          <Button className="ml-auto" onClick={onNext} {...styleProps}>
             Next
             {' '}
             <ArrowRightIcon />
           </Button>
         )}
         {onSubmit && (
-          <Button className="ml-auto" onClick={onSubmit} disabled={!valid}>
+          <Button className="ml-auto" onClick={onSubmit} {...styleProps}>
             Submit
             {' '}
             <CheckIcon />

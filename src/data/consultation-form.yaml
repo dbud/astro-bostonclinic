@@ -1,0 +1,306 @@
+pages:
+  - page: About you
+    sections:
+      - type: fields
+        fields:
+          - label: Name
+            type: text
+            id: firstName
+            placeholder: First name
+          - type: text
+            id: lastName
+            placeholder: Last name
+      - type: fields
+        fields:
+          - label: Date of birth
+            type: date-picker
+            optional: yes
+      - type: fields
+        fields:
+          - label: Ethnicity
+            sublabel: This will help us to gain a better idea about your risk in relation to your weight.
+            type: select
+            options:
+              - Bangladeshi
+              - Black African
+              - Black Caribbean
+              - Chinese
+              - Indian
+              - Middle Eastern
+              - Mixed
+              - Pakistani
+              - White
+              - Other
+              - Prefer not to answer
+          - label: Sex
+            type: select
+            options:
+              - Male
+              - Female
+      - type: separator
+      - type: fields
+        fields:
+          - label: Address
+            type: text
+            placeholder: Street address
+      - type: fields
+        fields:
+          - type: text
+            id: city
+            placeholder: City
+          - type: text
+            id: postCode
+            placeholder: Post code
+      - type: fields
+        fields:
+          - label: Contacts
+            type: text
+            id: phone
+            placeholder: Phone number
+          - type: text
+            id: email
+            placeholder: Email
+            optional: true
+      # - type: fields
+      #   fields:
+      #     - label: What is your usual blood pressure range?
+      #       type: select
+      #       options:
+      #         low: Low — 90/60 or below
+      #         normal: Normal — between 91/61 and 139/89
+      #         high: High — 140/90 or above
+      #         unknown: I don’t know
+
+  - page: Your health
+    description: It’s important that you give truthful information about your medical history.
+    sections:
+      - type: fields
+        fields:
+          - label: Weight
+            sublabel: It's really important you give us an accurate up-to-date measurement. You may be asked to provide evidence of your current weight.
+            type: weight
+      - type: fields
+        fields:
+          - label: Height
+            type: height
+
+      - type: fields
+        fields:
+          - label: Do you have any of the following conditions?
+            type: multi-select
+            none: yes
+            options:
+              - Severe heart failure
+              - Kidney impairment
+              - Diabetic retinopathy
+              - Pancreatitis (current or previous issues)
+              - Gastroparesis
+              - Ulcerative colitis or Crohn's disease
+              - History or family history of Thyroid cancer, medullary thyroid cancer or MEN2
+              - Any cancer, current chemotherapy or radiotherapy
+
+      - type: fields
+        fields:
+          - label: Do you have gallbladder or bile duct issues?
+            type: select
+            options:
+              - Yes
+              - No
+            followup:
+              Yes:
+                type: select
+                label: Could you please provide more information about your gallbladder issues?
+                radio: yes
+                options:
+                  gallstones: I'm currently experiencing, or have previously experienced, gall stones (cholestasis/cholecystitis)
+                  removed: I have had my Gallbladder removed
+                  other: Other
+                followup:
+                  removed:
+                    type: select
+                    radio: yes
+                    label: When did you have surgery to remove your gallbladder?
+                    options:
+                      - More than 3 months ago
+                      - Less than 3 months ago
+                  other:
+                    type: text
+                    label: Please provide more information
+                    lines: 3
+
+      - type: fields
+        fields:
+          - label: Do you have liver impairment?
+            type: select
+            options:
+              - Yes
+              - No
+            followup:
+              Yes:
+                label: Do you have any of the following liver conditions? If suitable, people with certain medical conditions may be prescribed weight loss medicines at a lower BMI than other patients.
+                type: multi-select
+                options:
+                  - Non-alcoholic fatty liver disease
+                  - Non-alcoholic steatohepatitis (NASH)
+                  - I have moderate/severe Liver Impairment
+                  - Other
+                followup:
+                  Other:
+                    label: Please provide more information
+                    type: text
+                    lines: 3
+
+      - type: fields
+        fields:
+          - label: Do you have diabetes?
+            type: select
+            options:
+              pre: I have pre-diabetes/diet controlled diabetes
+              yes: Yes and I take medication for my diabetes
+              no: No
+            followup:
+              yes:
+                label: Do you use any of the following medication to treat your diabetes?
+                type: multi-select
+                options:
+                  - Insulin
+                  - Sulphonylureas (such as gliclazide, glimepiride, glipizide)
+                  - Ozempic
+                  - Victoza
+                  - Other
+                followup:
+                  Other:
+                    label: Please provide more information
+                    type: text
+                    lines: 3
+
+      - type: fields
+        fields:
+          - label: People with weight-related medical conditions may be prescribed weight loss medicines at a lower BMI than other patients, if suitable. Please let us know if you have any of the following weight-related conditions
+            type: multi-select
+            none: yes
+            options:
+              - On treatment for Depression linked to your weight
+              - Acid reflux or Gastro-oesophageal Reflux Disease (GORD)
+              - High blood pressure
+              - Erectile Dysfunction
+              - Cardiovascular disease (such as heart attack, atrial fibrillation, previous stroke)
+              - Knee or hip osteoarthritis
+              - Asthma
+              - COPD
+              - Obstructive sleep apnoea
+              - High cholesterol
+              - Polycystic ovary syndrome (PCOS)
+              - Peri-menopause/Menopause
+              - Other
+            followup:
+              Other:
+                label: Please provide more information
+                type: text
+                lines: 3
+
+      - type: fields
+        fields:
+          - label: Have you ever made yourself sick (vomit) to control your shape or to lose weight?
+            type: select
+            options:
+              - Yes
+              - No
+
+      - type: fields
+        fields:
+          - label: In the last year, have you taken laxative medication in order to lose weight?
+            type: select
+            options:
+              - Yes
+              - No
+
+      - type: fields
+        fields:
+          - label: Do you worry that you have lost control over how much you eat? (i.e. you have eaten an unusually large amount of food and have had a sense of loss of control at the time?)
+            type: select
+            options:
+              - Yes
+              - No
+
+      - type: fields
+        fields:
+          - label: Would you say that food or image dominates your life?
+            type: select
+            options:
+              - Food and image, yes
+              - Food, yes
+              - Image, yes
+              - No, neither
+
+      - type: fields
+        fields:
+          - label: Do you ever eat in secret?
+            type: select
+            options:
+              - Yes
+              - No
+
+  - page: Medical history
+    sections:
+      - type: fields
+        fields:
+          - label: Do you take any medication (from your GP, over-the-counter or herbal medication)?
+            sublabel: Please do not include any weight loss medication you currently take
+            type: select
+            options:
+              - Yes
+              - No
+            followup:
+              Yes:
+                label: Please provide more information
+                type: text
+                lines: 3
+
+      - type: fields
+        fields:
+          - label: Do you have any allergies?
+            type: select
+            options:
+              - Yes
+              - No
+            followup:
+              Yes:
+                label: Please provide more information
+                type: text
+                lines: 3
+
+      - type: fields
+        fields:
+          - label: Have you had any surgery in the past 3 months?
+            type: select
+            options:
+              - Yes
+              - No
+            followup:
+              Yes:
+                label: Please provide more information
+                type: text
+                lines: 3
+
+      - type: fields
+        fields:
+          - label: Have you ever been diagnosed with an eating disorder (such as anorexia, binge eating disorder or bulimia) by a healthcare professional?
+            type: select
+            options:
+              - Yes
+              - No
+            followup:
+              Yes:
+                label: Please provide more information
+                type: text
+                lines: 3
+
+      - type: fields
+        fields:
+          - label: How much exercise do you undertake each week?
+            type: select
+            options:
+              - Less than 60 minutes
+              - 60−120 minutes
+              - More than 120 munites

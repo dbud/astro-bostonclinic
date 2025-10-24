@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
+import { Turnstile } from '@/components/Turnstile'
 import deriveIds, { deriveFollowupId } from '@/lib/derive-ids'
 import {
   type Field,
@@ -14,7 +15,7 @@ export function Form(props: { form: Form }) {
   const form = deriveIds(props.form)
 
   const [state, setState] = useState<State>({})
-  const [index, setIndex] = useState(1)
+  const [index, setIndex] = useState(2)
 
   function validateFollowup(field: SelectableField, key: unknown) {
     const followup = (field.followup ?? {})[key as string]
@@ -39,6 +40,36 @@ export function Form(props: { form: Form }) {
     return true
   }
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [index])
+
+  const [token, setToken] = useState<string | null>(null)
+
+  const onSubmit = useCallback(async () => {
+    try {
+      const res = await fetch('/api/verify-turnstile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, form }),
+      })
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const json = await res.json() as any
+
+      if (json.ok) {
+        alert('Yes token valid')
+      }
+      else {
+        alert(`No token invalid: ${json.reason || 'unknown'}`)
+      }
+    }
+    catch (err) {
+      console.error(err)
+      alert('Error verifying token')
+    }
+  }, [token, form])
+
   return (
     <StateContext.Provider value={{
       state, setState,
@@ -53,18 +84,22 @@ export function Form(props: { form: Form }) {
           index < form.pages.length - 1 ? () => setIndex(index + 1) : undefined
         }
         onSubmit={
-          index === form.pages.length - 1
-            ? () => alert('Form submitted!')
+          token && index === form.pages.length - 1
+            ? onSubmit
             : undefined
         }
+
       />
-      <pre className="text-sm p-6">
+      {/* <pre className="text-sm p-6">
         {JSON.stringify(
           state,
           (_key, value) => (value instanceof Set ? [...value] : value),
           2,
         )}
-      </pre>
+      </pre> */}
+      <div className="max-w-xl py-4 flex justify-end">
+        <Turnstile siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY} onVerify={setToken} />
+      </div>
     </StateContext.Provider>
   )
 }
