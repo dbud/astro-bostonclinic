@@ -4,6 +4,10 @@ dist/
 # generated types
 .astro/
 
+# certificates for https local dev
+localhost.pem
+localhost-key.pem
+
 # dependencies
 node_modules/
 

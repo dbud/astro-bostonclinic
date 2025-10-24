@@ -22,6 +22,13 @@ export default defineConfig({
       // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
       alias: import.meta.env.PROD ? [{ find: 'react-dom/server', replacement: 'react-dom/server.edge' }] : [],
     },
+    server: {
+      https: {
+        key: './localhost-key.pem',
+        cert: './localhost.pem',
+      },
+    },
   },
 
-  integrations: [react()] })
+  integrations: [react()]
+})
