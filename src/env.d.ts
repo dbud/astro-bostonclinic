@@ -1,5 +1,6 @@
 type Runtime = import('@astrojs/cloudflare').Runtime<Env>
 
+declare const PUBLIC_TURNSTILE_SITE_KEY: string
 declare const TURNSTILE_SECRET_KEY: string
 
 declare namespace App {

@@ -98,7 +98,10 @@ export function Form(props: { form: Form }) {
         )}
       </pre> */}
       <div className="max-w-xl py-4 flex justify-end">
-        <Turnstile siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY} onVerify={setToken} />
+        <Turnstile
+          siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? PUBLIC_TURNSTILE_SITE_KEY}
+          onVerify={setToken}
+        />
       </div>
     </StateContext.Provider>
   )
