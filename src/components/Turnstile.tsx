@@ -29,15 +29,7 @@ export function Turnstile({ siteKey, onVerify, options }: Props) {
     }
   }, [siteKey])
 
-  return (
-    <>
-      <pre>
-        siteKey =
-        {siteKey}
-      </pre>
-      <div ref={ref} className="cf-turnstile" />
-    </>
-  )
+  return <div ref={ref} className="cf-turnstile" />
 }
 
 export function TurnstileScript() {
