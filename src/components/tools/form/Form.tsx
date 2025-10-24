@@ -11,7 +11,7 @@ import {
 import Page from './Page'
 import { type State, StateContext } from './useFormState'
 
-export function Form(props: { form: Form }) {
+export function Form(props: { form: Form, endpoint: string }) {
   const form = deriveIds(props.form)
 
   const [state, setState] = useState<State>({})
@@ -48,7 +48,7 @@ export function Form(props: { form: Form }) {
 
   const onSubmit = useCallback(async () => {
     try {
-      const res = await fetch(form.endpoint, {
+      const res = await fetch(props.endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, form }),

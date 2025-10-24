@@ -27,8 +27,5 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
-  // {
-    // files: ['**/*.{astro}'],
-    ...eslintPluginAstro.configs.recommended,
-  // }
+  ...eslintPluginAstro.configs.recommended,
 ])
