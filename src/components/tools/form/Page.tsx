@@ -68,7 +68,7 @@ export default function Page({
     .filter(section => section.type === 'fields')
     .flatMap(section => section.fields)
     .every(validate)
-    || true /* REMOVE THIS */
+    || true /* TODO: REMOVE THIS */
 
   const styleProps = {
     disabled: !valid,
