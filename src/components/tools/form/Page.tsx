@@ -51,17 +51,15 @@ function PageContent({ page }: { page: Page }) {
   )
 }
 
-export default function Page({
-  page,
-  onBack,
-  onNext,
-  onSubmit,
-}: {
+type PageProps = {
   page: Page
   onBack?: () => void
   onNext?: () => void
   onSubmit?: () => void
-}) {
+  submitPlaceholder?: React.ReactNode
+}
+
+export default function Page({ page, onBack, onNext, onSubmit, submitPlaceholder }: PageProps) {
   const { validate } = useFormState()
 
   const valid = page.sections
@@ -100,8 +98,9 @@ export default function Page({
             <ArrowRightIcon />
           </Button>
         )}
+        {submitPlaceholder}
         {onSubmit && (
-          <Button className="ml-auto" onClick={onSubmit} {...styleProps}>
+          <Button className="" onClick={onSubmit} {...styleProps}>
             Submit
             {' '}
             <CheckIcon />

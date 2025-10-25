@@ -68,6 +68,16 @@ export function Form(props: { form: Form, endpoint: string }) {
     }
   }, [token, form])
 
+  const lastPage = index === form.pages.length - 1
+  const turnstile = (
+    <div className="">
+      <Turnstile
+        siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? PUBLIC_TURNSTILE_SITE_KEY}
+        onVerify={setToken}
+      />
+    </div>
+  )
+
   return (
     <StateContext.Provider value={{
       state, setState,
@@ -78,21 +88,10 @@ export function Form(props: { form: Form, endpoint: string }) {
       <Page
         page={form.pages[index]}
         onBack={index > 0 ? () => setIndex(index - 1) : undefined}
-        onNext={
-          index < form.pages.length - 1 ? () => setIndex(index + 1) : undefined
-        }
-        onSubmit={
-          token && index === form.pages.length - 1
-            ? onSubmit
-            : undefined
-        }
+        onNext={index < form.pages.length - 1 ? () => setIndex(index + 1) : undefined}
+        onSubmit={token && lastPage ? onSubmit : undefined}
+        submitPlaceholder={lastPage && turnstile}
       />
-      <div className="max-w-xl py-4 flex justify-end">
-        <Turnstile
-          siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? PUBLIC_TURNSTILE_SITE_KEY}
-          onVerify={setToken}
-        />
-      </div>
     </StateContext.Provider>
   )
 }
