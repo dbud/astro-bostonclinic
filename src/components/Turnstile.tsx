@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { Loader2 } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 import { waitForTurnstile } from '@/lib/turnstile-ready'
 
@@ -10,12 +11,14 @@ type Props = {
 
 export function Turnstile({ siteKey, onVerify, options }: Props) {
   const ref = useRef<HTMLDivElement>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let widgetId: string | undefined
 
     waitForTurnstile().then((turnstile) => {
       if (ref.current && turnstile) {
+        setLoading(false)
         widgetId = turnstile.render(ref.current, {
           sitekey: siteKey,
           callback: onVerify,
@@ -29,7 +32,19 @@ export function Turnstile({ siteKey, onVerify, options }: Props) {
     }
   }, [siteKey])
 
-  return <div ref={ref} className="cf-turnstile" />
+  const spinner = (
+    <div className="text-sm text-slate-500 flex items-center gap-2">
+      <Loader2 className="animate-spin" />
+      <span>Verifying you’re human...</span>
+    </div>
+  )
+
+  return (
+    <>
+      {loading && spinner}
+      <div ref={ref} className="cf-turnstile" />
+    </>
+  )
 }
 
 export function TurnstileScript() {
