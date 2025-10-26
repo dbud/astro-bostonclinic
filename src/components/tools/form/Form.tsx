@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 import { Turnstile } from '@/components/Turnstile'
+import { Toaster } from '@/components/ui/sonner'
 import deriveIds, { deriveFollowupId } from '@/lib/derive-ids'
 import {
   type Field,
@@ -56,10 +58,10 @@ export function Form(props: { form: Form, endpoint: string }) {
       const json = await res.json() as { ok: boolean, reason?: string }
 
       if (json.ok) {
-        alert('Yes token valid')
+        toast('Token verified successfully!')
       }
       else {
-        alert(`No token invalid: ${json.reason || 'unknown'}`)
+        toast(`Invalid token: ${json.reason || 'unknown'}`)
       }
     }
     catch (err) {
@@ -92,6 +94,7 @@ export function Form(props: { form: Form, endpoint: string }) {
         onSubmit={token && lastPage ? onSubmit : undefined}
         submitPlaceholder={lastPage && turnstile}
       />
+      <Toaster position="top-center" />
     </StateContext.Provider>
   )
 }
