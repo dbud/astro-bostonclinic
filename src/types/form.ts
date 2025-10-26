@@ -1,3 +1,6 @@
+import type { State } from '@/components/tools/form/useFormState'
+import type { FormId } from '@/lib/forms-provider'
+
 type BaseField = {
   type: string
   id: string
@@ -53,5 +56,12 @@ export type Page = {
 }
 
 export type Form = {
+  id: FormId
   pages: Page[]
+}
+
+export type FormSubmitRequest = {
+  token: string
+  data: State
+  formId: FormId
 }

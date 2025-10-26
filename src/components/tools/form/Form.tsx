@@ -7,6 +7,7 @@ import deriveIds, { deriveFollowupId } from '@/lib/derive-ids'
 import {
   type Field,
   type Form,
+  type FormSubmitRequest,
   type SelectableField,
 } from '@/types/form'
 
@@ -53,7 +54,7 @@ export function Form(props: { form: Form, endpoint: string }) {
       const res = await fetch(props.endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token, form }),
+        body: JSON.stringify({ token, data: state, formId: form.id } as FormSubmitRequest),
       })
       const json = await res.json() as { ok: boolean, reason?: string }
 

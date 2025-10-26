@@ -7,7 +7,7 @@ declare namespace App {
   type Locals = Runtime
 }
 
-declare module '*/consultation-form.yaml' {
+declare module '*/form/consultation/weight-loss.yaml' {
   import { type Form } from '@types/form'
   const value: Form
   export default value

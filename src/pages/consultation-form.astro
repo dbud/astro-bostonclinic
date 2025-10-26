@@ -1,12 +1,14 @@
 ---
 import { Form } from "@/components/tools/form/Form";
 import { TurnstileScript } from "@/components/Turnstile";
-import form from "@/data/consultation-form.yaml";
 import Tool from "@/layouts/Tool.astro";
+import getForm from "@/lib/forms-provider";
+
+const form = getForm("form/consultation/weight-loss");
 ---
 
 <Tool title="Consultation Form">
-  <Form form={form} endpoint="/api/consultation-form" client:load />
+  <Form form={form} endpoint="/api/form/consultation/weight-loss" client:load />
 </Tool>
 
 <TurnstileScript />
