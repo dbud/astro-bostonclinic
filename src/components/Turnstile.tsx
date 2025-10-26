@@ -19,7 +19,7 @@ export function Turnstile({ siteKey, onVerify, options }: Props) {
     waitForTurnstile().then((turnstile) => {
       if (ref.current && turnstile) {
         setLoading(false)
-        widgetId = turnstile.render(ref.current, { // todo: enforce light theme
+        widgetId = turnstile.render(ref.current, {
           sitekey: siteKey,
           callback: onVerify,
           ...options,
@@ -42,7 +42,7 @@ export function Turnstile({ siteKey, onVerify, options }: Props) {
   return (
     <>
       {loading && spinner}
-      <div ref={ref} className="cf-turnstile" />
+      <div ref={ref} className="cf-turnstile" data-theme="light" />
     </>
   )
 }
