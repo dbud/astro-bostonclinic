@@ -79,30 +79,32 @@ export default function Page({ page, onBack, onNext, onSubmit, submitPlaceholder
             <Invalid><span className="text-sm">Questions marked with asterisk are required</span></Invalid>
           </CardFooter>
         )}
-      <CardFooter className="flex justify-between">
-        {onBack && (
-          <Button variant="secondary" onClick={onBack}>
-            <ArrowLeftIcon />
-            {' '}
-            Back
-          </Button>
-        )}
-        {onNext && (
-          <Button className="ml-auto" onClick={onNext} disabled={!valid} variant={valid ? 'default' : 'outline'}>
-            Next
-            {' '}
-            <ArrowRightIcon />
-          </Button>
-        )}
+      <CardFooter className="flex flex-col gap-4">
         {submitPlaceholder}
-        {onSubmit && (
-          <Button onClick={onSubmit} disabled={!valid || submitting} variant={valid ? 'default' : 'outline'}>
-            {submitting && <Loader2 className="animate-spin" />}
-            Submit
-            {' '}
-            <CheckIcon />
-          </Button>
-        )}
+        <div className="flex w-full justify-between">
+          {onBack && (
+            <Button variant="secondary" onClick={onBack}>
+              <ArrowLeftIcon />
+              {' '}
+              Back
+            </Button>
+          )}
+          {onNext && (
+            <Button className="ml-auto" onClick={onNext} disabled={!valid} variant={valid ? 'default' : 'outline'}>
+              Next
+              {' '}
+              <ArrowRightIcon />
+            </Button>
+          )}
+          {onSubmit && (
+            <Button onClick={onSubmit} disabled={!valid || submitting} variant={valid ? 'default' : 'outline'}>
+              {submitting && <Loader2 className="animate-spin" />}
+              Submit
+              {' '}
+              <CheckIcon />
+            </Button>
+          )}
+        </div>
       </CardFooter>
     </Card>
   )

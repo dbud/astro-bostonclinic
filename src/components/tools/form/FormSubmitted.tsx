@@ -11,9 +11,7 @@ export default function FormSubmitted() {
         <CardTitle className="text-2xl">Thank you!</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>
-          We’ll be in touch soon.
-        </p>
+        We’ll be in touch soon.
       </CardContent>
       <Separator />
       <CardContent>
