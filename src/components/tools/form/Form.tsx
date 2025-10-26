@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
+import FormSubmitted from '@/components/tools/form/FormSubmitted'
 import { Turnstile } from '@/components/Turnstile'
 import { Toaster } from '@/components/ui/sonner'
 import deriveIds, { deriveFollowupId } from '@/lib/derive-ids'
@@ -48,8 +49,8 @@ export function Form(props: { form: Form, endpoint: string }) {
   }, [index])
 
   const [token, setToken] = useState<string | null>(null)
-
   const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
 
   const onSubmit = useCallback(async () => {
     setSubmitting(true)
@@ -62,7 +63,8 @@ export function Form(props: { form: Form, endpoint: string }) {
       const json = await res.json() as { ok: boolean, reason?: string }
 
       if (json.ok) {
-        toast('Form submitted')
+        toast('Form submitted successfully.')
+        setSubmitted(true)
       }
       else {
         throw new Error(json.reason)
@@ -81,6 +83,8 @@ export function Form(props: { form: Form, endpoint: string }) {
       onVerify={setToken}
     />
   )
+
+  if (submitted) return <FormSubmitted />
 
   return (
     <StateContext.Provider value={{
