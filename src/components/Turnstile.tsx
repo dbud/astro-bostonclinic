@@ -19,7 +19,7 @@ export function Turnstile({ siteKey, onVerify, options }: Props) {
     waitForTurnstile().then((turnstile) => {
       if (ref.current && turnstile) {
         setLoading(false)
-        widgetId = turnstile.render(ref.current, {
+        widgetId = turnstile.render(ref.current, { // todo: enforce light theme
           sitekey: siteKey,
           callback: onVerify,
           ...options,
