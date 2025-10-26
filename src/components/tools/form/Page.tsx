@@ -1,4 +1,4 @@
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from 'lucide-react'
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, Loader2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -57,9 +57,10 @@ type PageProps = {
   onNext?: () => void
   onSubmit?: () => void
   submitPlaceholder?: React.ReactNode
+  submitting: boolean
 }
 
-export default function Page({ page, onBack, onNext, onSubmit, submitPlaceholder }: PageProps) {
+export default function Page({ page, onBack, onNext, onSubmit, submitPlaceholder, submitting }: PageProps) {
   const { validate } = useFormState()
 
   const valid = page.sections
@@ -67,11 +68,6 @@ export default function Page({ page, onBack, onNext, onSubmit, submitPlaceholder
     .flatMap(section => section.fields)
     .every(validate)
     || true /* TODO: REMOVE THIS */
-
-  const styleProps = {
-    disabled: !valid,
-    variant: valid ? 'default' : 'outline',
-  } as const
 
   return (
     <Card className="max-w-xl">
@@ -92,7 +88,7 @@ export default function Page({ page, onBack, onNext, onSubmit, submitPlaceholder
           </Button>
         )}
         {onNext && (
-          <Button className="ml-auto" onClick={onNext} {...styleProps}>
+          <Button className="ml-auto" onClick={onNext} disabled={!valid} variant={valid ? 'default' : 'outline'}>
             Next
             {' '}
             <ArrowRightIcon />
@@ -100,7 +96,8 @@ export default function Page({ page, onBack, onNext, onSubmit, submitPlaceholder
         )}
         {submitPlaceholder}
         {onSubmit && (
-          <Button className="" onClick={onSubmit} {...styleProps}>
+          <Button onClick={onSubmit} disabled={!valid || submitting} variant={valid ? 'default' : 'outline'}>
+            {submitting && <Loader2 className="animate-spin" />}
             Submit
             {' '}
             <CheckIcon />

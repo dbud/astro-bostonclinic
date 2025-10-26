@@ -49,7 +49,10 @@ export function Form(props: { form: Form, endpoint: string }) {
 
   const [token, setToken] = useState<string | null>(null)
 
+  const [submitting, setSubmitting] = useState(false)
+
   const onSubmit = useCallback(async () => {
+    setSubmitting(true)
     try {
       const res = await fetch(props.endpoint, {
         method: 'POST',
@@ -59,26 +62,24 @@ export function Form(props: { form: Form, endpoint: string }) {
       const json = await res.json() as { ok: boolean, reason?: string }
 
       if (json.ok) {
-        toast('Token verified successfully!')
+        toast('Form submitted')
       }
       else {
-        toast(`Invalid token: ${json.reason || 'unknown'}`)
+        throw new Error(json.reason)
       }
     }
-    catch (err) {
-      console.error(err)
-      alert('Error verifying token')
+    catch (e) {
+      toast.error('Something went wrong, please try again.', { description: (e as Error).message })
+      setSubmitting(false)
     }
   }, [token, form])
 
   const lastPage = index === form.pages.length - 1
   const turnstile = (
-    <div className="">
-      <Turnstile
-        siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? PUBLIC_TURNSTILE_SITE_KEY}
-        onVerify={setToken}
-      />
-    </div>
+    <Turnstile
+      siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? PUBLIC_TURNSTILE_SITE_KEY}
+      onVerify={setToken}
+    />
   )
 
   return (
@@ -93,7 +94,8 @@ export function Form(props: { form: Form, endpoint: string }) {
         onBack={index > 0 ? () => setIndex(index - 1) : undefined}
         onNext={index < form.pages.length - 1 ? () => setIndex(index + 1) : undefined}
         onSubmit={token && lastPage ? onSubmit : undefined}
-        submitPlaceholder={lastPage && turnstile}
+        submitPlaceholder={!submitting && lastPage && turnstile}
+        submitting={submitting}
       />
       <Toaster position="top-center" />
     </StateContext.Provider>
