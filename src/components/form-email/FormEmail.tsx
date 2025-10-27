@@ -7,7 +7,7 @@ import { type Field, type Form, type Page, type SelectableField } from '@/types/
 export default function FormEmail({ form, data }: { form: Form, data: State }) {
   const pages = form.pages.flat()
   return (
-    <div className="flex flex-col gap-4 max-w-4xl bg-white p-8" style={{ fontFamily: 'sans-serif' }}>
+    <div className="max-w-4xl bg-white p-8" style={{ fontFamily: 'sans-serif' }}>
       {pages.map((page, i) => <RenderPage page={page} key={i} data={data} />)}
     </div>
   )
@@ -16,7 +16,7 @@ export default function FormEmail({ form, data }: { form: Form, data: State }) {
 function RenderPage({ page, data }: { page: Page, data: State }) {
   const fieldsArr = page.sections.filter(section => section.type === 'fields').map(({ fields }) => fields)
   return (
-    <div>
+    <div className="mb-8">
       <h1 className="text-2xl bg-black text-white px-2 py-1 inline-block mb-4">{page.page}</h1>
       {fieldsArr.map((fields, i) => <RenderFields fields={fields} key={i} data={data} />)}
     </div>
