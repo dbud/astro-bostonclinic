@@ -1,3 +1,4 @@
+import type { APIContext } from 'astro'
 import { Resend } from 'resend'
 
 import renderFormEmail from '@/components/form-email/render'
@@ -6,7 +7,8 @@ import { verifyToken } from '@/lib/verify-turnstile'
 import type { FormSubmitRequest } from '@/types/form'
 export const prerender = false
 
-export async function POST({ request }: { request: Request }): Promise<Response> {
+export async function POST({ request, locals }: APIContext): Promise<Response> {
+  const env = locals.runtime.env
   const json = await request.json()
   const { token, data, formId } = json as FormSubmitRequest
 
@@ -21,16 +23,11 @@ export async function POST({ request }: { request: Request }): Promise<Response>
   const form = getForm(formId)
   const html = await renderFormEmail({ form, data })
 
-  console.log({ html })
+  const recipients = (await env.EMAIL_LIST_KV.get('form-recipients') ?? '').split(',')
 
-  const str = await EMAIL_LIST_KV.get('form-recipients') ?? ''
-  console.log({ str })
-  const recipients = str.split(',')
-  console.log({ recipients })
-
-  const resend = new Resend(import.meta.env.RESEND_API_KEY ?? RESEND_API_KEY)
+  const resend = new Resend(import.meta.env.RESEND_API_KEY ?? env.RESEND_API_KEY)
   const { error } = await resend.emails.send({
-    from: form.subject,
+    from: form.from,
     to: recipients,
     subject: form.subject,
     html,
