@@ -5,7 +5,7 @@ import FormSubmitted from '@/components/form/FormSubmitted'
 import { Turnstile } from '@/components/Turnstile'
 import { Toaster } from '@/components/ui/sonner'
 import sampleData from '@/data/sample-data'
-import deriveIds, { deriveFollowupId } from '@/lib/derive-ids'
+import { deriveFollowupId } from '@/lib/derive-ids'
 import {
   type Field,
   type Form,
@@ -13,12 +13,11 @@ import {
   type SelectableField,
 } from '@/types/form'
 
+import FormEmail from '../form-email/FormEmail'
 import Page from './Page'
 import { type State, StateContext } from './useFormState'
 
-export function Form(props: { form: Form, endpoint: string }) {
-  const form = deriveIds(props.form)
-
+export function Form({ form, endpoint }: { form: Form, endpoint: string }) {
   const [state, setState] = useState<State>(sampleData)
   const [index, setIndex] = useState(2)
 
@@ -56,7 +55,7 @@ export function Form(props: { form: Form, endpoint: string }) {
   const onSubmit = useCallback(async () => {
     setSubmitting(true)
     try {
-      const res = await fetch(props.endpoint, {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, data: state, formId: form.id } as FormSubmitRequest),
@@ -103,6 +102,7 @@ export function Form(props: { form: Form, endpoint: string }) {
         submitting={submitting}
       />
       <Toaster position="top-center" />
+      <FormEmail form={form} data={state} />
     </StateContext.Provider>
   )
 }
