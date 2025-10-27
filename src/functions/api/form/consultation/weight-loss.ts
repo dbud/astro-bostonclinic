@@ -21,7 +21,12 @@ export async function POST({ request }: { request: Request }): Promise<Response>
   const form = getForm(formId)
   const html = await renderFormEmail({ form, data })
 
-  const recipients = (await EMAIL_LIST_KV.get('form-recipients') ?? '').split(',')
+  console.log({ html })
+
+  const str = await EMAIL_LIST_KV.get('form-recipients') ?? ''
+  console.log({ str })
+  const recipients = str.split(',')
+  console.log({ recipients })
 
   const resend = new Resend(import.meta.env.RESEND_API_KEY ?? RESEND_API_KEY)
   const { error } = await resend.emails.send({
@@ -30,6 +35,7 @@ export async function POST({ request }: { request: Request }): Promise<Response>
     subject: form.subject,
     html,
   })
+  console.log({ error })
   if (error) {
     return new Response(
       JSON.stringify({ ok: false, reason: error.message }),
