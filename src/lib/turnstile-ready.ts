@@ -10,7 +10,7 @@ declare global {
           'error-callback'?: () => void
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           [key: string]: any
-        }
+        },
       ) => string
       remove: (widgetId: string) => void
       reset: (widgetId?: string) => void

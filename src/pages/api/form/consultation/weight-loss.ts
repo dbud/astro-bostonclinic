@@ -32,10 +32,10 @@ export async function POST({ request, locals }: APIContext): Promise<Response> {
     subject: form.subject,
     html,
   })
-  console.log({ error })
   if (error) {
+    console.log({ error })
     return new Response(
-      JSON.stringify({ ok: false, reason: error.message }),
+      JSON.stringify({ ok: false, error: error.message }),
       { headers: { 'Content-Type': 'application/json' } },
     )
   }

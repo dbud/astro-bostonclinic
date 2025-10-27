@@ -4,7 +4,6 @@ import { toast } from 'sonner'
 import FormSubmitted from '@/components/form/FormSubmitted'
 import { Turnstile } from '@/components/Turnstile'
 import { Toaster } from '@/components/ui/sonner'
-import sampleData from '@/data/sample-data'
 import { deriveFollowupId } from '@/lib/derive-ids'
 import {
   type Field,
@@ -18,8 +17,8 @@ import Page from './Page'
 import { type State, StateContext } from './useFormState'
 
 export function Form({ form, endpoint }: { form: Form, endpoint: string }) {
-  const [state, setState] = useState<State>(sampleData)
-  const [index, setIndex] = useState(2)
+  const [state, setState] = useState<State>({})
+  const [index, setIndex] = useState(0)
 
   function validateFollowup(field: SelectableField, key: unknown) {
     const followup = (field.followup ?? {})[key as string]
@@ -102,7 +101,10 @@ export function Form({ form, endpoint }: { form: Form, endpoint: string }) {
         submitting={submitting}
       />
       <Toaster position="top-center" />
-      <FormEmail form={form} data={state} />
+      <details className="mt-8">
+        <summary className="cursor-pointer mb-4">preview form</summary>
+        <FormEmail form={form} data={state} />
+      </details>
     </StateContext.Provider>
   )
 }

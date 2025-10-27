@@ -52,6 +52,7 @@ function RenderLabel({ field }: { field: Field }) {
 function RenderValue({ field, data }: { field: Field, data: State }) {
   const { type, id } = field
   const value = data[id]
+  if (!value) return null
   const className = 'bg-amber-200 px-2 pt-1'
   switch (type) {
     case 'text': return <div className={className}>{value as string}</div>

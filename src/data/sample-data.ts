@@ -1,3 +1,4 @@
+// TODO: remove this
 const sampleData = {
   'firstName': 'Dima',
   'lastName': 'Bud',

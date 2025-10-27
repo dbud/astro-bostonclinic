@@ -19,7 +19,7 @@ function PageContent({ page }: { page: Page }) {
     <>
       <CardHeader>
         <div className="flex items-center gap-4 opacity-40 text-sm mb-4">
-          <span className="flex-shrink-0">
+          <span className="shrink-0">
             {currentPage + 1}
             {' '}
             /
