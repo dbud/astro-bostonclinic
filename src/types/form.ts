@@ -1,4 +1,4 @@
-import type { State } from '@/components/tools/form/useFormState'
+import type { State } from '@/components/form/useFormState'
 import type { FormId } from '@/lib/forms-provider'
 
 type BaseField = {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
-import FormSubmitted from '@/components/tools/form/FormSubmitted'
+import FormSubmitted from '@/components/form/FormSubmitted'
 import { Turnstile } from '@/components/Turnstile'
 import { Toaster } from '@/components/ui/sonner'
 import sampleData from '@/data/sample-data'
@@ -103,7 +103,6 @@ export function Form(props: { form: Form, endpoint: string }) {
         submitting={submitting}
       />
       <Toaster position="top-center" />
-      <pre className="text-xs">{JSON.stringify(state, null, '  ')}</pre>
     </StateContext.Provider>
   )
 }

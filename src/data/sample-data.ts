@@ -1,6 +1,6 @@
 const sampleData = {
-  'firstName': 'D',
-  'lastName': 'B',
+  'firstName': 'Dima',
+  'lastName': 'Bud',
   'date-of-birth': '2025-09-30T23:00:00.000Z',
   'ethnicity': 'White',
   'sex': 'Male',
