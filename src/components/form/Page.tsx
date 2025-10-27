@@ -67,7 +67,6 @@ export default function Page({ page, onBack, onNext, onSubmit, submitPlaceholder
     .filter(section => section.type === 'fields')
     .flatMap(section => section.fields)
     .every(validate)
-    || true /* TODO: REMOVE THIS */
 
   return (
     <Card className="max-w-xl">
