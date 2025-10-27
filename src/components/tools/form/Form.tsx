@@ -4,6 +4,7 @@ import { toast } from 'sonner'
 import FormSubmitted from '@/components/tools/form/FormSubmitted'
 import { Turnstile } from '@/components/Turnstile'
 import { Toaster } from '@/components/ui/sonner'
+import sampleData from '@/data/sample-data'
 import deriveIds, { deriveFollowupId } from '@/lib/derive-ids'
 import {
   type Field,
@@ -18,7 +19,7 @@ import { type State, StateContext } from './useFormState'
 export function Form(props: { form: Form, endpoint: string }) {
   const form = deriveIds(props.form)
 
-  const [state, setState] = useState<State>({})
+  const [state, setState] = useState<State>(sampleData)
   const [index, setIndex] = useState(2)
 
   function validateFollowup(field: SelectableField, key: unknown) {
@@ -36,8 +37,8 @@ export function Form(props: { form: Form, endpoint: string }) {
       return validateFollowup(field, value)
     }
     if (field.type === 'multi-select') {
-      if (!(value instanceof Set)) return false
-      if (value.size === 0) return false
+      if (!(value instanceof Array)) return false
+      if (value.length === 0) return false
       return Array.from(value).every(option => validateFollowup(field, option))
     }
     if (field.type === 'weight' || field.type === 'height') return value as number > 0
@@ -102,6 +103,7 @@ export function Form(props: { form: Form, endpoint: string }) {
         submitting={submitting}
       />
       <Toaster position="top-center" />
+      <pre className="text-xs">{JSON.stringify(state, null, '  ')}</pre>
     </StateContext.Provider>
   )
 }

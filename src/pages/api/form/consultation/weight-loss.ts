@@ -6,6 +6,7 @@ export const prerender = false
 export async function POST({ request }: { request: Request }): Promise<Response> {
   const json = await request.json()
   const { token, data, formId } = json as FormSubmitRequest
+  console.log(data)
 
   const result = await verifyToken(token)
   if (!result.success) {
