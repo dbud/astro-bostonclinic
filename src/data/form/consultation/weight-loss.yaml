@@ -1,4 +1,6 @@
 id: form/consultation/weight-loss
+subject: Weight loss consultation form
+from: form@bostonaestheticsclinic.com
 pages:
   - page: About you
     sections:

@@ -58,6 +58,8 @@ export type Page = {
 export type Form = {
   id: FormId
   pages: Page[]
+  subject: string
+  from: string
 }
 
 export type FormSubmitRequest = {
