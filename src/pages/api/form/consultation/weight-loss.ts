@@ -23,7 +23,10 @@ export async function POST({ request, locals }: APIContext): Promise<Response> {
   const form = getForm(formId)
   const html = await renderFormEmail({ form, data })
 
-  const recipients = (await env.EMAIL_LIST_KV.get('form-recipients') ?? '').split(',')
+  const recipients = ((env.EMAIL_LIST_KV
+    ? await env.EMAIL_LIST_KV.get('form-recipients')
+    : import.meta.env.EMAIL_LIST_RECIPIENTS) ?? '')
+    .split(',')
 
   const resend = new Resend(import.meta.env.RESEND_API_KEY ?? env.RESEND_API_KEY)
   const { error } = await resend.emails.send({

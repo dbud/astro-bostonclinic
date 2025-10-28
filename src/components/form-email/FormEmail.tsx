@@ -30,9 +30,12 @@ function RenderFields({ fields, data }: { fields: Field[], data: State }) {
 function RenderField({ field, data }: { field: Field, data: State }) {
   return (
     <div className="flex mb-4 items-center" style={{ borderBottom: '1px solid #000' }}>
-      <div className="w-64 px-2 shrink-0">
-        <RenderLabel field={field} />
-      </div>
+      {field.type !== 'acknowledgement'
+        && (
+          <div className="w-64 px-2 shrink-0">
+            <RenderLabel field={field} />
+          </div>
+        )}
       <div className="ml-8"><RenderValue field={field} data={data} /></div>
     </div>
   )
@@ -79,17 +82,24 @@ function RenderValue({ field, data }: { field: Field, data: State }) {
       </div>
     )
     case 'multi-select': return (
+      <ul className="list-disc">
+        {(value as string[]).map((option, i) => (
+          <li key={i}>
+            <span className={className}><RenderSelectedOption field={field} option={option} /></span>
+            <RenderFollowup field={field} option={option} data={data} />
+          </li>
+        ))}
+      </ul>
+    )
+    case 'acknowledgement': return (
       <div>
         <ul className="list-disc">
-          {(value as string[]).map((option, i) => (
-            <li key={i}>
-              <span className={className}><RenderSelectedOption field={field} option={option} /></span>
-              <RenderFollowup field={field} option={option} data={data} />
-            </li>
-          ))}
+          {field.points.map((point, i) => <li key={i}>{point}</li>)}
         </ul>
+        <p className={className}>{field.tick}</p>
       </div>
     )
+    default: return <pre className="text-2xs">{JSON.stringify({ field, value }, null, '  ')}</pre>
   }
 }
 

@@ -86,6 +86,7 @@ pages:
         fields:
           - label: Height
             type: height
+      - type: separator
 
       - type: fields
         fields:
@@ -202,6 +203,8 @@ pages:
                 type: text
                 lines: 3
 
+      - type: separator
+
       - type: fields
         fields:
           - label: Have you ever made yourself sick (vomit) to control your shape or to lose weight?
@@ -307,3 +310,47 @@ pages:
               - Less than 60 minutes
               - 60−120 minutes
               - More than 120 munites
+
+  # - page: Your Treatment
+  #   sections:
+  #     - type: fields
+  #       fields:
+  #         - label: Are you currently using any of the following (you have used a dose within the last 3 weeks)?
+  #           type: select
+  #           options:
+  #             - Wegovy
+  #             - Ozempic
+  #             - Mounjaro
+  #             - Xenical / Orlistat
+  #             - Other
+  #             - I’m not currently taking anything
+  #           followup:
+  #             Other:
+  #               label: Please provide more information
+  #               type: text
+  #               lines: 3
+
+  - page: Acknowledgements
+    description: To ensure you understand key information about your treatment, read the below statements carefully and acknowledge understanding.
+    sections:
+      - type: fields
+        fields:
+          - type: acknowledgement
+            id: ack1
+            points:
+              - I understand I should use one weight loss product at any one time.
+              - I understand that the best and safest weight loss outcomes are achieved by slowly and carefully titrating the dose as per the dose escalation schedule to gain the maximum benefit from the medication. I understand that if I have a gap in treatment longer than 2 weeks, I may need to reduce my dose to avoid side effects.
+              - I understand that Wegovy/Mounjaro is used as an injection under the skin (subcutaneous injection). I will not inject it into a vein or muscle. The best places to give the injection are the upper arms, stomach or upper legs. I will ensure to drink plenty of fluids to avoid dehydration. I can find detailed instructions on using Wegovy/Mounjaro in the Patient Information Leaflet in the box.
+              - I understand that I will stop treatment and inform Boston Aesthetics Clinic and/or seek medical attention if I experience severe dehydration, e.g. dark urine, confusion, blood in stool or vomit, diarrhoea lasting longer than 72 hours, or being unable to keep food down without vomiting/diarrhoea.
+              - I understand that it is important for female patients to use reliable contraception throughout treatment with Wegovy and Mounjaro. You must stop Wegovy at least 8 weeks before trying to conceive and Mounjaro at least 4 weeks before trying to conceive. If you use oral hormonal contraception (such as the pill) while on Mounjaro, you will need to use additional barrier methods of contraception (such as condoms) for 4 weeks when starting treatment and each time you increase to a new dose. If you become pregnant while using either treatment, discontinue use immediately and consult your GP.
+              - I understand that if I experience any troublesome side effects from Wegovy/Mounjaro, I can contact Boston Aesthetics Clinic, my GP, or another healthcare professional for advice. I confirm that I will read about the side effects in the Patient Information Leaflet.
+            tick: I confirm that I understand and agree with the statements above.
+      - type: separator
+      - type: fields
+        fields:
+          - type: acknowledgement
+            id: ack2
+            points:
+              - I confirm this treatment is for me, and I consent to this treatment. If Wegovy/Mounjaro does not help me realise my weight loss aims, I will consult my GP for further advice. I take responsibility to inform Boston Aesthetics Clinic and/or my own regular doctor of any changes in my circumstances. I agree to the Boston Aesthetics Clinic terms and conditions.
+              - I confirm that all the above information is truthful and accurate. I agree to inform Boston Aesthetics Clinic of any change to my health as soon as possible, as I understand this could impact the suitability of the medication I am being prescribed.
+            tick: I confirm that I understand and agree with the statements above.

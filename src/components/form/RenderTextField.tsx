@@ -6,7 +6,7 @@ import type { TextField } from '@/types/form'
 
 import { useFormFieldState } from './useFormState'
 
-export const RenderTextField = ({ field }: { field: TextField }) => {
+export default function RenderTextField({ field }: { field: TextField }) {
   const { value, setValue } = useFormFieldState<string>(field)
   const props = {
     id: field.id,

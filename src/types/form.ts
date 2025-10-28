@@ -44,7 +44,13 @@ export type HeightField = BaseField & {
   type: 'height'
 }
 
-export type Field = TextField | DatePickerField | SelectField | WeightField | HeightField | MultiSelectField
+export type AcknowledgementField = BaseField & {
+  type: 'acknowledgement'
+  points: string[]
+  tick: string
+}
+
+export type Field = TextField | DatePickerField | SelectField | WeightField | HeightField | MultiSelectField | AcknowledgementField
 
 export type Section
   = | { type: 'fields', fields: Field[] } | { type: 'separator' }

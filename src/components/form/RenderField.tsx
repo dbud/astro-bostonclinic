@@ -1,10 +1,11 @@
 import { type Field } from '@/types/form'
 
+import RenderAcknowledgementField from './RenderAcknowledgementField'
 import RenderDatePickerField from './RenderDatePickerField'
 import RenderHeightField from './RenderHeightField'
 import RenderMultiSelectField from './RenderMultiSelectField'
 import RenderSelectField from './RenderSelectField'
-import { RenderTextField } from './RenderTextField'
+import RenderTextField from './RenderTextField'
 import RenderWeightField from './RenderWeightField'
 
 export default function RenderField({ field }: { field: Field }) {
@@ -21,5 +22,7 @@ export default function RenderField({ field }: { field: Field }) {
       return <RenderWeightField field={field} />
     case 'height':
       return <RenderHeightField field={field} />
+    case 'acknowledgement':
+      return <RenderAcknowledgementField field={field} />
   }
 }
