@@ -7,8 +7,8 @@ import getForm from "@/lib/forms-provider";
 const form = getForm("form/consultation/weight-loss");
 ---
 
-<Tool title="Consultation Form">
-  <Form form={form} endpoint="/api/form/consultation/weight-loss" client:load />
+<Tool title="Weight loss consultation form">
+  <Form form={form} endpoint="/api/form/submit" client:load />
 </Tool>
 
 <TurnstileScript />
