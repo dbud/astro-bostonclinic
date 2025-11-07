@@ -4,10 +4,11 @@ import { type State } from '@/components/form/useFormState'
 import { deriveFollowupId } from '@/lib/derive-ids'
 import { type Field, type Form, type Page, type SelectableField } from '@/types/form'
 
-export default function FormEmail({ form, data }: { form: Form, data: State }) {
+export default function FormEmail({ form, data, submissionUrl }: { form: Form, data: State, submissionUrl?: string }) {
   const pages = form.pages.flat()
   return (
     <div className="max-w-4xl bg-white p-8" style={{ fontFamily: 'sans-serif' }}>
+      {submissionUrl && <a href={submissionUrl} className="mb-8">See submission</a>}
       {pages.map((page, i) => <RenderPage page={page} key={i} data={data} />)}
     </div>
   )

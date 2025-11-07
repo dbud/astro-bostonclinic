@@ -12,7 +12,13 @@ export async function POST({ request, locals }: APIContext): Promise<Response> {
   const json = await request.json()
   const { token, data, formId } = json as FormSubmitRequest
 
-  console.log({ type: 'form-submit', data, formId })
+  const submissionId = crypto.randomUUID()
+  const url = new URL(request.url)
+  const submissionUrl = `${url.protocol}//${url.host}/submissions/${submissionId}`
+
+  console.log({ type: 'form-submit', data, formId, submissionId, submissionUrl })
+
+  await env.FORM_SUBMISSIONS_KV.put(submissionId, JSON.stringify({ data, formId }))
 
   const result = await verifyToken(token)
   if (!result.success) {
@@ -23,7 +29,7 @@ export async function POST({ request, locals }: APIContext): Promise<Response> {
   }
 
   const form = getForm(formId)
-  const html = await renderFormEmail({ form, data })
+  const html = await renderFormEmail({ form, data, submissionUrl })
 
   console.log({ html })
 

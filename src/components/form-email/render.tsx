@@ -5,7 +5,7 @@ import { type Form } from '@/types/form'
 
 import FormEmail from './FormEmail'
 
-export default async function renderFormEmail(props: { form: Form, data: State }) {
+export default async function renderFormEmail(props: { form: Form, data: State, submissionUrl?: string }) {
   const node = (
     <Html>
       <Body>

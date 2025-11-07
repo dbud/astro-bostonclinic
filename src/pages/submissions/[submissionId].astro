@@ -1,0 +1,22 @@
+---
+import type { State } from "@/components/form/useFormState";
+import Page from "@/layouts/Page.astro";
+import Tool from "@/layouts/Tool.astro";
+import getForm, { type FormId } from "@/lib/forms-provider";
+import FormEmail from "@/components/form-email/FormEmail";
+
+export const prerender = false;
+const { submissionId } = Astro.params;
+
+const url = new URL(Astro.request.url);
+const endpoint = `${url.protocol}//${url.host}/api/form/submissions/${submissionId}`;
+const { data, formId } = (await fetch(endpoint).then((res) => res.json())) as {
+  data: State;
+  formId: FormId;
+};
+const form = getForm(formId);
+---
+
+<Tool title="Form submission">
+  <FormEmail data={data} form={form} />
+</Tool>
