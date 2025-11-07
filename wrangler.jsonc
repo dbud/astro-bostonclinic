@@ -3,35 +3,40 @@
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "astro-bostonclinic",
-  "main": "./dist/_worker.js/index.js",
-  "compatibility_date": "2025-08-01",
-  "compatibility_flags": [
-    "nodejs_compat",
-    "global_fetch_strictly_public"
-  ],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": "./dist"
-  },
-  "observability": {
-    "enabled": true
-  },
-  "routes": [
-    {
-      "pattern": "bostonaestheticsclinic.com",
-      "custom_domain": true
-    }
-  ],
-  "vars": {
-    "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAB8eGZ6NNxjN_nDc"
-  },
-  "kv_namespaces": [
-    {
-      "binding": "EMAIL_LIST_KV",
-      "id": "4620bb445a204dec96511fcceed46af7",
-      "remote": true
-    }
-  ]
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "astro-bostonclinic",
+	"main": "./dist/_worker.js/index.js",
+	"compatibility_date": "2025-08-01",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"routes": [
+		{
+			"pattern": "bostonaestheticsclinic.com",
+			"custom_domain": true
+		}
+	],
+	"vars": {
+		"PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAB8eGZ6NNxjN_nDc"
+	},
+	"kv_namespaces": [
+		{
+			"binding": "EMAIL_LIST_KV",
+			"id": "4620bb445a204dec96511fcceed46af7",
+			"remote": true
+		},
+		{
+			"binding": "FORM_SUBMISSIONS_KV",
+			"id": "2cf3f119ca114fb1aae1424cee47a157",
+			"remote": true
+		}
+	]
 }
