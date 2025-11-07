@@ -22,6 +22,7 @@ export async function POST({ request, locals }: APIContext): Promise<Response> {
 
   const result = await verifyToken(token)
   if (!result.success) {
+    console.log({ error: result.reason })
     return new Response(
       JSON.stringify({ error: result.reason }),
       { headers: { 'Content-Type': 'application/json' } },
