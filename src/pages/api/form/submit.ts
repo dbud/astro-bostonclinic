@@ -12,6 +12,8 @@ export async function POST({ request, locals }: APIContext): Promise<Response> {
   const json = await request.json()
   const { token, data, formId } = json as FormSubmitRequest
 
+  console.log({ type: 'form-submit', data, formId })
+
   const result = await verifyToken(token)
   if (!result.success) {
     return new Response(
@@ -22,6 +24,8 @@ export async function POST({ request, locals }: APIContext): Promise<Response> {
 
   const form = getForm(formId)
   const html = await renderFormEmail({ form, data })
+
+  console.log({ html })
 
   const recipients = ((env.EMAIL_LIST_KV
     ? await env.EMAIL_LIST_KV.get('form-recipients')
