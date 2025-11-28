@@ -64,15 +64,15 @@ pages:
             id: email
             placeholder: Email
             optional: true
-      # - type: fields
-      #   fields:
-      #     - label: What is your usual blood pressure range?
-      #       type: select
-      #       options:
-      #         low: Low — 90/60 or below
-      #         normal: Normal — between 91/61 and 139/89
-      #         high: High — 140/90 or above
-      #         unknown: I don’t know
+      - type: fields
+        fields:
+          - label: What is your usual blood pressure range?
+            type: select
+            options:
+              low: Low — 90/60 or below
+              normal: Normal — between 91/61 and 139/89
+              high: High — 140/90 or above
+              unknown: I don’t know
 
   - page: Your health
     description: It’s important that you give truthful information about your medical history.
@@ -309,7 +309,7 @@ pages:
             options:
               - Less than 60 minutes
               - 60−120 minutes
-              - More than 120 munites
+              - More than 120 minutes
 
   # - page: Your Treatment
   #   sections:
